@@ -21,6 +21,7 @@ public class AstronomicObjectTest {
     @Test
     public void construct() {
         AstronomicObject astronomicObject = new AstronomicObject(
+                AstronomicObject.AstronomicObjectType.EARTH,
                 "Earth",
                 Amount.valueOf(100.0, METER),
                 Amount.valueOf(100.0, KILOGRAM),
@@ -36,6 +37,7 @@ public class AstronomicObjectTest {
     @Test
     public void move() {
         AstronomicObject astronomicObject = new AstronomicObject(
+                AstronomicObject.AstronomicObjectType.EARTH,
                 "Earth",
                 Amount.valueOf(100.0, METER),
                 Amount.valueOf(100.0, KILOGRAM),
@@ -55,6 +57,7 @@ public class AstronomicObjectTest {
     public void computeAcceleration() {
 
         AstronomicObject earth = new AstronomicObject(
+                AstronomicObject.AstronomicObjectType.EARTH,
                 "Earth",
                 Amount.valueOf(0.0, METER),
                 Amount.valueOf(0.0, KILOGRAM),
@@ -62,6 +65,7 @@ public class AstronomicObjectTest {
                 VectorMeasure.valueOf(0.0, 0.0, 0.0, METRES_PER_SECOND)
         );
         AstronomicObject sun = new AstronomicObject(
+                AstronomicObject.AstronomicObjectType.SUN,
                 "Sun",
                 Amount.valueOf(0.0, METER),
                 Amount.valueOf(9.0, KILOGRAM),
@@ -87,6 +91,7 @@ public class AstronomicObjectTest {
     public void computeAccelerationSum() {
 
         AstronomicObject moved = new AstronomicObject(
+                AstronomicObject.AstronomicObjectType.PLANET,
                 "moved",
                 Amount.valueOf(0.0, METER),
                 Amount.valueOf(0.0, KILOGRAM),
@@ -94,6 +99,7 @@ public class AstronomicObjectTest {
                 VectorMeasure.valueOf(0.0, 0.0, 0.0, METRES_PER_SECOND)
         );
         AstronomicObject moving01 = new AstronomicObject(
+                AstronomicObject.AstronomicObjectType.PLANET,
                 "moving01",
                 Amount.valueOf(0.0, METER),
                 Amount.valueOf(9.0, KILOGRAM),
@@ -102,6 +108,7 @@ public class AstronomicObjectTest {
         );
 
         AstronomicObject moving02 = new AstronomicObject(
+                AstronomicObject.AstronomicObjectType.PLANET,
                 "moving02",
                 Amount.valueOf(0.0, METER),
                 Amount.valueOf(2.10022, KILOGRAM),
@@ -131,6 +138,7 @@ public class AstronomicObjectTest {
     public void updateVelocity() {
 
         AstronomicObject earth = new AstronomicObject(
+                AstronomicObject.AstronomicObjectType.EARTH,
                 "Earth",
                 Amount.valueOf(ConstantValues.EARTH_RADIUS_VALUE, METER),
                 Amount.valueOf(ConstantValues.EARTH_MASS_VALUE, KILOGRAM),

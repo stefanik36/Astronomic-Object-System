@@ -22,6 +22,7 @@ public class AstronomicObjectSystemTest {
     public void construct() {
 
         AstronomicObject earth = new AstronomicObject(
+                AstronomicObject.AstronomicObjectType.EARTH,
                 "Earth",
                 Amount.valueOf(ConstantValues.EARTH_RADIUS_VALUE, METER),
                 Amount.valueOf(ConstantValues.EARTH_MASS_VALUE, KILOGRAM),
@@ -29,6 +30,7 @@ public class AstronomicObjectSystemTest {
                 VectorMeasure.valueOf(0.0, 0.0, 0.0, METRES_PER_SECOND)
         );
         AstronomicObject sun = new AstronomicObject(
+                AstronomicObject.AstronomicObjectType.SUN,
                 "Sun",
                 Amount.valueOf(ConstantValues.SUN_RADIUS_VALUE, METER),
                 Amount.valueOf(ConstantValues.SUN_MASS_VALUE, KILOGRAM),
@@ -38,7 +40,7 @@ public class AstronomicObjectSystemTest {
 
         AstronomicObjectSystem astronomicObjectSystem = new AstronomicObjectSystem(
                 List.of(earth, sun),
-                Amount.valueOf(ConstantValues.GRAVITATIONAL_CONSTANT_VALUE, KILOGRAM)
+                ConstantValues.GRAVITATIONAL_CONSTANT
         );
         astronomicObjectSystem.printPositions();
         assertEquals(astronomicObjectSystem.getAstronomicObjectList().size(), 2);
@@ -49,6 +51,7 @@ public class AstronomicObjectSystemTest {
     public void moveOneObject() {
 
         AstronomicObject moved = new AstronomicObject(
+                AstronomicObject.AstronomicObjectType.PLANET,
                 "moved",
                 Amount.valueOf(0.0, METER),
                 Amount.valueOf(0.0, KILOGRAM),
@@ -56,6 +59,7 @@ public class AstronomicObjectSystemTest {
                 VectorMeasure.valueOf(0.0, 0.0, 0.0, METRES_PER_SECOND)
         );
         AstronomicObject moving01 = new AstronomicObject(
+                AstronomicObject.AstronomicObjectType.PLANET,
                 "moving01",
                 Amount.valueOf(0.0, METER),
                 Amount.valueOf(9.0, KILOGRAM),
@@ -64,6 +68,7 @@ public class AstronomicObjectSystemTest {
         );
 
         AstronomicObject moving02 = new AstronomicObject(
+                AstronomicObject.AstronomicObjectType.PLANET,
                 "moving02",
                 Amount.valueOf(0.0, METER),
                 Amount.valueOf(2.10022, KILOGRAM),
@@ -95,6 +100,7 @@ public class AstronomicObjectSystemTest {
     public void moveAll() {
 
         AstronomicObject ao01 = new AstronomicObject(
+                AstronomicObject.AstronomicObjectType.PLANET,
                 "ao01",
                 Amount.valueOf(0.0, METER),
                 Amount.valueOf(0.0, KILOGRAM),
@@ -102,6 +108,7 @@ public class AstronomicObjectSystemTest {
                 VectorMeasure.valueOf(0.0, 0.0, 0.0, METRES_PER_SECOND)
         );
         AstronomicObject ao02 = new AstronomicObject(
+                AstronomicObject.AstronomicObjectType.PLANET,
                 "ao02",
                 Amount.valueOf(0.0, METER),
                 Amount.valueOf(9.0, KILOGRAM),
@@ -110,6 +117,7 @@ public class AstronomicObjectSystemTest {
         );
 
         AstronomicObject ao03 = new AstronomicObject(
+                AstronomicObject.AstronomicObjectType.PLANET,
                 "ao03",
                 Amount.valueOf(0.0, METER),
                 Amount.valueOf(16, KILOGRAM),
@@ -144,6 +152,7 @@ public class AstronomicObjectSystemTest {
     public void moveAllTimes() {
 
         AstronomicObject ao01 = new AstronomicObject(
+                AstronomicObject.AstronomicObjectType.PLANET,
                 "ao01",
                 Amount.valueOf(0.0, METER),
                 Amount.valueOf(0.0, KILOGRAM),
@@ -151,6 +160,7 @@ public class AstronomicObjectSystemTest {
                 VectorMeasure.valueOf(0.0, 0.0, 0.0, METRES_PER_SECOND)
         );
         AstronomicObject ao02 = new AstronomicObject(
+                AstronomicObject.AstronomicObjectType.PLANET,
                 "ao02",
                 Amount.valueOf(0.0, METER),
                 Amount.valueOf(9.0, KILOGRAM),
@@ -159,6 +169,7 @@ public class AstronomicObjectSystemTest {
         );
 
         AstronomicObject ao03 = new AstronomicObject(
+                AstronomicObject.AstronomicObjectType.PLANET,
                 "ao03",
                 Amount.valueOf(0.0, METER),
                 Amount.valueOf(16, KILOGRAM),

@@ -1,15 +1,18 @@
 package com.agh.aos.game.factory;
 
 import com.agh.aos.factory.AstronomicObjectFactory;
+import com.agh.aos.game.objects.AstronomicObjectView;
 import com.agh.aos.game.objects.Planet;
 import com.agh.aos.game.objects.Star;
 import com.agh.aos.model.AstronomicObject;
+import com.agh.aos.model.AstronomicObjectSystem;
 import com.jme3.asset.AssetManager;
 import com.jme3.material.Material;
 import com.jme3.math.ColorRGBA;
 import com.jme3.scene.Geometry;
 import com.jme3.scene.shape.Sphere;
 import com.jme3.util.TangentBinormalGenerator;
+import io.vavr.collection.List;
 
 import javax.measure.unit.SI;
 
@@ -18,10 +21,20 @@ import static com.agh.aos.game.Utils3d.fromXYZToVector3f;
 
 public class AstronomicObjectViewFactory {
 
-    public static Planet earth(AssetManager manager) {
-        AstronomicObject obj = AstronomicObjectFactory.earth();
+
+    public static Planet biggerEarth(AssetManager manager) {
+        AstronomicObject obj = AstronomicObjectFactory.biggerEarth();
         Material m = new Material(manager,
                 "Common/MatDefs/Misc/Unshaded.j3md");
+        m.setColor("Color", ColorRGBA.Green);
+        Geometry geometry = createGeometry(obj, m); // only sun model is working XD
+
+        return new Planet(geometry, obj);
+    }
+
+    public static Planet earth(AssetManager manager) {
+        AstronomicObject obj = AstronomicObjectFactory.earth();
+        Material m = new Material(manager, "Common/MatDefs/Misc/Unshaded.j3md");
         m.setColor("Color", ColorRGBA.Green);
         Geometry geometry = createGeometry(obj, m); // only sun model is working XD
 
@@ -33,6 +46,33 @@ public class AstronomicObjectViewFactory {
 
         Geometry geometry = createGeometry(obj, manager.loadMaterial("Materials/Sun.j3m"));
         return new Star(geometry, obj);
+    }
+
+    public static List<AstronomicObjectView> toView(AstronomicObjectSystem astronomicObjectSystem, AssetManager manager) {
+        List<AstronomicObject.AstronomicObjectType> starMaterialTypes = List.of(AstronomicObject.AstronomicObjectType.SUN, AstronomicObject.AstronomicObjectType.STAR);
+        List<AstronomicObject.AstronomicObjectType> planetMaterialTypes = List.of(AstronomicObject.AstronomicObjectType.EARTH, AstronomicObject.AstronomicObjectType.PLANET);
+
+        return astronomicObjectSystem.getAstronomicObjectList().map(ao -> {
+            if (starMaterialTypes.contains(ao.getType())) {
+                return toStar(ao, manager);
+            } else if (planetMaterialTypes.contains(ao.getType())) {
+                return toPlanet(ao, manager);
+            } else {
+                throw new RuntimeException(new UnsupportedOperationException());
+            }
+        });
+    }
+
+    private static AstronomicObjectView toPlanet(AstronomicObject ao, AssetManager manager) {
+        Material m = new Material(manager, "Common/MatDefs/Misc/Unshaded.j3md");
+        m.setColor("Color", ColorRGBA.Green);
+        Geometry geometry = createGeometry(ao, m); // only sun model is working XD
+        return new Planet(geometry, ao);
+    }
+
+    private static AstronomicObjectView toStar(AstronomicObject ao, AssetManager manager) {
+        Geometry geometry = createGeometry(ao, manager.loadMaterial("Materials/Sun.j3m"));
+        return new Star(geometry, ao);
     }
 
 

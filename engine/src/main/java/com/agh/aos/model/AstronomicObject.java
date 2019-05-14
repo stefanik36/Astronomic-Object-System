@@ -15,6 +15,14 @@ import static javax.measure.unit.SI.*;
 
 
 public class AstronomicObject {
+    /**
+     * MARS, SATURN etc. types for view (GUI)
+     */
+    public enum AstronomicObjectType {
+        STAR, SUN, PLANET, EARTH
+    }
+
+    private AstronomicObjectType type;
     private String name;
 
     private Amount<Length> radius;
@@ -25,7 +33,8 @@ public class AstronomicObject {
     private VectorMeasure<Velocity> velocity;
     private VectorMeasure<Acceleration> acceleration;
 
-    public AstronomicObject(String name, Amount<Length> radius, Amount<Mass> mass, XYZ position, VectorMeasure<Velocity> velocity) {
+    public AstronomicObject(AstronomicObjectType type, String name, Amount<Length> radius, Amount<Mass> mass, XYZ position, VectorMeasure<Velocity> velocity) {
+        this.type = type;
         this.name = name;
         this.radius = radius;
         this.mass = mass;
@@ -93,6 +102,14 @@ public class AstronomicObject {
 
     public void move() {
         this.position = XYZ.valueOf(position.toVector(METER).plus(Float64Vector.valueOf(velocity.getValue())), METER);
+    }
+
+    public AstronomicObjectType getType() {
+        return type;
+    }
+
+    public void setType(AstronomicObjectType type) {
+        this.type = type;
     }
 
     public String getName() {

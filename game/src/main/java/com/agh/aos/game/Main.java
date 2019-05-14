@@ -1,6 +1,8 @@
 package com.agh.aos.game;
 
+import com.agh.aos.factory.AstronomicObjectSystemFactory;
 import com.agh.aos.game.factory.AstronomicObjectViewFactory;
+import com.agh.aos.game.objects.AstronomicObjectView;
 import com.agh.aos.model.AstronomicObjectSystem;
 import com.jme3.app.SimpleApplication;
 import com.jme3.math.Vector3f;
@@ -13,6 +15,7 @@ import io.vavr.collection.List;
 /**
  * This is the Main Class of your Game. You should only do initialization here.
  * Move your Logic into AppStates or Controls
+ *
  * @author normenhansen
  */
 public class Main extends SimpleApplication {
@@ -33,13 +36,12 @@ public class Main extends SimpleApplication {
     @Override
     public void simpleInitApp() {
         flyCam.setMoveSpeed(2000f);
-        cam.setLocation(new Vector3f(-700,0,2500));
-        cam.setFrustumFar(5000);
+        cam.setLocation(new Vector3f(-1000, 0, 16000));
+        cam.setFrustumFar(30000);
         cam.onFrameChange();
 
-
-        List astronomicObjects = List.of(AstronomicObjectViewFactory.sun(assetManager), AstronomicObjectViewFactory.earth(assetManager));
-        gravityEngine = new AOSEngineWrapper(astronomicObjects);
+        this.gravityEngine = getEngine(AstronomicObjectSystemFactory.earthSunWithSpeed(13.0));
+//        this.gravityEngine = getEngine();
         gravityEngine.attachToNode(rootNode);
 
 
@@ -49,8 +51,22 @@ public class Main extends SimpleApplication {
 //        rootNode.attachChild(gameLevel);
 
         initializeSky();
-
     }
+
+    private AOSEngineWrapper getEngine(AstronomicObjectSystem astronomicObjectSystem) {
+        List<AstronomicObjectView> astronomicObjects = AstronomicObjectViewFactory.toView(astronomicObjectSystem, this.assetManager);
+        return new AOSEngineWrapper(astronomicObjectSystem, astronomicObjects);
+    }
+
+
+    private AOSEngineWrapper getEngine() {
+        List<AstronomicObjectView> astronomicObjects = List.of(
+                AstronomicObjectViewFactory.sun(assetManager),
+                AstronomicObjectViewFactory.earth(assetManager)
+        );
+        return new AOSEngineWrapper(astronomicObjects);
+    }
+
 
     private void initializeSky() {
         Texture west = getAssetManager().loadTexture("Textures/Sky/Milkyway/west.jpg");

@@ -7,12 +7,11 @@ public class ConstantValues {
     /**
      * m^3⋅kg^−1⋅s^−2
      */
-    public static final double GRAVITATIONAL_CONSTANT_VALUE = 6.67408e-11;
-    public static final Amount<?> GRAVITATIONAL_CONSTANT= Constants.G;
+    public static final Amount<?> GRAVITATIONAL_CONSTANT = Constants.G; // value (6.67408e-11)
     /**
      * m
      */
-    public static final double EARTH_RADIUS_VALUE = 6.371e+07; // original 6.371e+06
+    public static final double EARTH_RADIUS_VALUE = 6.371e+06;
     /**
      * kg
      */
@@ -24,7 +23,7 @@ public class ConstantValues {
     /**
      * m / s
      */
-    public static final double EARTH_VELOCITY_V_VALUE = -30300.0;
+    public static final double EARTH_VELOCITY_V_VALUE = -3.03e+04;
 
     /**
      * m
