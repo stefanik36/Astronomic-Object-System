@@ -1,0 +1,42 @@
+
+plugins {
+    id 'java'
+    id 'application'
+}
+
+group 'planetary-system2'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+mainClassName = 'com.agh.aos.game.Main'
+
+
+
+repositories {
+    mavenCentral()
+    jcenter()
+}
+
+jar {
+    manifest {
+        attributes(
+                'Main-Class': 'com.agh.aos.game.Main'
+        )
+    }
+}
+
+
+
+
+dependencies {
+//    compile project(':assets').sourceSets.main.output
+//    compile project(path: ':assets', configuration: 'generated')
+    compile project(':engine')
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    compile "org.jmonkeyengine:jme3-core:3.2.2-stable"
+    compile "org.jmonkeyengine:jme3-desktop:3.2.2-stable"
+    compile "org.jmonkeyengine:jme3-lwjgl:3.2.2-stable"
+    compile "org.jmonkeyengine:jme3-plugins:3.2.2-stable"
+}
+
