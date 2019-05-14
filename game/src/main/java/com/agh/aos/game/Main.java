@@ -36,11 +36,15 @@ public class Main extends SimpleApplication {
     @Override
     public void simpleInitApp() {
         flyCam.setMoveSpeed(2000f);
-        cam.setLocation(new Vector3f(-1000, 0, 16000));
+        cam.setLocation(new Vector3f(-1000, 0, 12000));
         cam.setFrustumFar(30000);
         cam.onFrameChange();
 
-        this.gravityEngine = getEngine(AstronomicObjectSystemFactory.earthSunWithSpeed(13.0));
+//        this.gravityEngine = getEngine(AstronomicObjectSystemFactory.earthSunWithSpeed(13.0));
+        this.gravityEngine = getEngine(AstronomicObjectSystemFactory.abstractPlanet01AbstractPlane02Sun());
+//        this.gravityEngine = getEngine(AstronomicObjectSystemFactory.sunEarthBiggerVelocityMoonBiggerVelocity());
+//        this.gravityEngine = getEngine(AstronomicObjectSystemFactory.earthBiggerVelocitySun_AroundSun());
+//        this.gravityEngine = getEngine(AstronomicObjectSystemFactory.earthInCenterMoon());
 //        this.gravityEngine = getEngine();
         gravityEngine.attachToNode(rootNode);
 

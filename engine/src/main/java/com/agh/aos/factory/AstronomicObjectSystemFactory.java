@@ -63,6 +63,41 @@ public class AstronomicObjectSystemFactory {
         );
     }
 
+    public static AstronomicObjectSystem sunEarthBiggerVelocityMoonBiggerVelocity() {
+        return new AstronomicObjectSystem(
+                List.of(
+                        AstronomicObjectFactory.sun(),
+                        AstronomicObjectFactory.earthBiggerVelocity(),
+                        AstronomicObjectFactory.moonBiggerVelocity()
+                ),
+                Amount.valueOf(6.6e-01, CUBIC_METRE.divide(KILOGRAM).divide(SECOND).divide(SECOND))
+        );
+    }
+
+    public static AstronomicObjectSystem earthInCenterMoon() {
+        return new AstronomicObjectSystem(
+                List.of(
+                        AstronomicObjectFactory.sun(),
+                        AstronomicObjectFactory.earthBiggerVelocity(),
+                        AstronomicObjectFactory.moon()
+                ),
+                Amount.valueOf(6.6e-01, CUBIC_METRE.divide(KILOGRAM).divide(SECOND).divide(SECOND))
+        );
+    }
+
+
+    public static AstronomicObjectSystem abstractPlanet01AbstractPlane02Sun() {
+        return new AstronomicObjectSystem(
+                List.of(
+                        AstronomicObjectFactory.abstractPlanet01(),
+                        AstronomicObjectFactory.abstractPlanet02(),
+                        AstronomicObjectFactory.sun()
+                ),
+                Amount.valueOf(6.6e-01, CUBIC_METRE.divide(KILOGRAM).divide(SECOND).divide(SECOND))
+        );
+    }
+
+
     /**
      * @param speed simulation speed (decreases gravitational constant and increases initial earth velocity)
      * @return earth with proper gravitational constant and initial earth velocity
@@ -76,5 +111,6 @@ public class AstronomicObjectSystemFactory {
                 Amount.valueOf(6.67408e-11 * Math.pow(10, speed), CUBIC_METRE.divide(KILOGRAM).divide(SECOND).divide(SECOND))
         );
     }
+
 
 }

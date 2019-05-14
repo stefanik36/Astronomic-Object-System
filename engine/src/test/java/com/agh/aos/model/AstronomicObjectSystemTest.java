@@ -26,7 +26,7 @@ public class AstronomicObjectSystemTest {
                 "Earth",
                 Amount.valueOf(ConstantValues.EARTH_RADIUS_VALUE, METER),
                 Amount.valueOf(ConstantValues.EARTH_MASS_VALUE, KILOGRAM),
-                XYZ.valueOf(ConstantValues.EARTH_POSITION_X_VALUE, 0.0, 0.0, METER),
+                XYZ.valueOf(-ConstantValues.EARTH_POSITION_X_VALUE, 0.0, 0.0, METER),
                 VectorMeasure.valueOf(0.0, 0.0, 0.0, METRES_PER_SECOND)
         );
         AstronomicObject sun = new AstronomicObject(
@@ -184,7 +184,7 @@ public class AstronomicObjectSystemTest {
         );
 
 
-        for (int i = 0; i < 99999999; i++) {
+        for (int i = 0; i < 999; i++) {
             astronomicObjectSystem.nextStep();
         }
     }

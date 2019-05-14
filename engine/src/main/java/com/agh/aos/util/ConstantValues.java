@@ -19,11 +19,11 @@ public class ConstantValues {
     /**
      * m
      */
-    public static final double EARTH_POSITION_X_VALUE = -1.47095e+11;
+    public static final double EARTH_POSITION_X_VALUE = 1.47095e+11;
     /**
      * m / s
      */
-    public static final double EARTH_VELOCITY_V_VALUE = -3.03e+04;
+    public static final double EARTH_VELOCITY_V_VALUE = 3.03e+04;
 
     /**
      * m
@@ -34,4 +34,21 @@ public class ConstantValues {
      */
     public static final double SUN_MASS_VALUE = 1.989e+30;
 
+
+    /**
+     * m
+     */
+    public static final double MOON_RADIUS_VALUE = 1.7371e+06;
+    /**
+     * kg
+     */
+    public static final double MOON_MASS_VALUE = 7.347673e+22;
+    /**
+     * m
+     */
+    public static final double MOON_POSITION_X_VALUE = 3.844e+08;
+    /**
+     * m / s
+     */
+    public static final double MOON_VELOCITY_V_VALUE = 1.022000e+06;
 }

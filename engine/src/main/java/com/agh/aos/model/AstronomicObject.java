@@ -19,7 +19,7 @@ public class AstronomicObject {
      * MARS, SATURN etc. types for view (GUI)
      */
     public enum AstronomicObjectType {
-        STAR, SUN, PLANET, EARTH
+        STAR, SUN, PLANET, EARTH, SATELLITE, MOON
     }
 
     private AstronomicObjectType type;

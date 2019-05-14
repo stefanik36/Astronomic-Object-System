@@ -51,16 +51,26 @@ public class AstronomicObjectViewFactory {
     public static List<AstronomicObjectView> toView(AstronomicObjectSystem astronomicObjectSystem, AssetManager manager) {
         List<AstronomicObject.AstronomicObjectType> starMaterialTypes = List.of(AstronomicObject.AstronomicObjectType.SUN, AstronomicObject.AstronomicObjectType.STAR);
         List<AstronomicObject.AstronomicObjectType> planetMaterialTypes = List.of(AstronomicObject.AstronomicObjectType.EARTH, AstronomicObject.AstronomicObjectType.PLANET);
+        List<AstronomicObject.AstronomicObjectType> satellitesMaterialTypes = List.of(AstronomicObject.AstronomicObjectType.MOON, AstronomicObject.AstronomicObjectType.SATELLITE);
 
         return astronomicObjectSystem.getAstronomicObjectList().map(ao -> {
             if (starMaterialTypes.contains(ao.getType())) {
                 return toStar(ao, manager);
             } else if (planetMaterialTypes.contains(ao.getType())) {
                 return toPlanet(ao, manager);
+            } else if (satellitesMaterialTypes.contains(ao.getType())) {
+                return toSatellites(ao, manager);
             } else {
                 throw new RuntimeException(new UnsupportedOperationException());
             }
         });
+    }
+
+    private static AstronomicObjectView toSatellites(AstronomicObject ao, AssetManager manager) {
+        Material m = new Material(manager, "Common/MatDefs/Misc/Unshaded.j3md");
+        m.setColor("Color", ColorRGBA.Blue);
+        Geometry geometry = createGeometry(ao, m); // only sun model is working XD
+        return new Planet(geometry, ao);
     }
 
     private static AstronomicObjectView toPlanet(AstronomicObject ao, AssetManager manager) {
