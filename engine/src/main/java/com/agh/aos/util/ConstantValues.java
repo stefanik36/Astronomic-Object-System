@@ -12,7 +12,7 @@ public class ConstantValues {
     /**
      * m
      */
-    public static final double EARTH_RADIUS_VALUE = 6.371e+06;
+    public static final double EARTH_RADIUS_VALUE = 6.371e+07; // original 6.371e+06
     /**
      * kg
      */
