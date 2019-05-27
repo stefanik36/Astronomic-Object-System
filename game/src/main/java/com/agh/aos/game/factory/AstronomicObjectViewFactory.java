@@ -66,16 +66,19 @@ public class AstronomicObjectViewFactory {
             } else if (satellitesMaterialTypes.contains(ao.getType())) {
                 return toSatellites(ao, manager);
             } else {
-                throw new RuntimeException(new UnsupportedOperationException());
+                return toOther(ao, manager);
+//                throw new RuntimeException(new UnsupportedOperationException()); //TODO set other materials
             }
         });
     }
 
     private static AstronomicObjectView toSatellites(AstronomicObject ao, AssetManager manager) {
         Material m = new Material(manager, "Common/MatDefs/Misc/Unshaded.j3md");
-        m.setColor("Color", ColorRGBA.Blue);
-        Geometry geometry = createGeometry(ao, m); // only sun model is working XD
-        return new Planet(geometry, ao);
+        m.setColor("Color", ColorRGBA.Red);
+        var label = LabelFactory.textWithMarker(ao.getName(), manager);//TODO some material for satellites
+
+        Geometry geometry = createGeometry(ao, m);
+        return new Planet(geometry, ao, label);
     }
 
     private static AstronomicObjectView toPlanet(AstronomicObject ao, AssetManager manager) {
@@ -85,8 +88,17 @@ public class AstronomicObjectViewFactory {
         m.setTexture("ColorMap",
                 manager.loadTexture("Textures/EarthHighRes/2k_earth_daymap.jpg"));
 
-        Geometry geometry = createGeometry(ao, m); // only sun model is working XD
+        Geometry geometry = createGeometry(ao, m);
         var label = LabelFactory.textWithMarker(ao.getName(), manager);
+        return new Planet(geometry, ao, label);
+    }
+
+    private static AstronomicObjectView toOther(AstronomicObject ao, AssetManager manager) {
+        Material m = new Material(manager, "Common/MatDefs/Misc/Unshaded.j3md");
+        m.setColor("Color", ColorRGBA.randomColor());
+        var label = LabelFactory.textWithMarker(ao.getName(), manager);//TODO some material for other
+
+        Geometry geometry = createGeometry(ao, m);
         return new Planet(geometry, ao, label);
     }
 

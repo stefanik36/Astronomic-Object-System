@@ -13,11 +13,13 @@ public class AstronomicObjectSystem {
     private List<AstronomicObject> astronomicObjectList;
     private Amount<?> gravitationalConstant;
     private long epoch;
+    private double stepSize;
 
     public AstronomicObjectSystem(List<AstronomicObject> astronomicObjectList, Amount<?> gravitationalConstant) {
         this.astronomicObjectList = astronomicObjectList;
         this.gravitationalConstant = gravitationalConstant;
         this.epoch = 0;
+        this.stepSize = 1.0;
     }
 
     public void printPositions() {
@@ -57,5 +59,15 @@ public class AstronomicObjectSystem {
         );
         epoch++;
 //        this.printPositions();
+    }
+
+    public double getStepSize() {
+        return stepSize;
+    }
+
+    public AstronomicObjectSystem setStepSize(double stepSize) {
+        this.stepSize = stepSize;
+        astronomicObjectList.forEach(ao -> ao.setStepSize(this.stepSize));
+        return this;
     }
 }

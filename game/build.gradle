@@ -43,7 +43,7 @@ dependencies {
 //    implementation 'com.jayfella:jme-jfx-11:1.1.0'
 //    compile 'com.jme3x:jme-jfx:1.7.5-Final'
     compile "org.jmonkeyengine:jme3-desktop:3.2.2-stable"
-    compile "org.jmonkeyengine:jme3-lwjgl3:3.2.2-stable"
+//    compile "org.jmonkeyengine:jme3-lwjgl3:3.2.2-stable"
     compile "org.jmonkeyengine:jme3-plugins:3.2.2-stable"
 
     compile 'com.jayfella:jme-jfx-11:1.0.3'

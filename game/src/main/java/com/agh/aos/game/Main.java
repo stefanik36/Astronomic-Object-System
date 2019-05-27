@@ -69,16 +69,35 @@ public class Main extends SimpleApplication {
         initializeSky();
         initializeCustomInputMapping();
 
+        /*
+         * when 60 frames per second: 60 sec * 1.0e+05 = 600 000 sec ~ 6.9444444 real days is 1 second of simulation for appSpeed = 1.0e+05
+         */
+        double appSpeed = 1.0e+05;
 
+//        this.gravityEngine = getEngine(AstronomicObjectSystemFactory.sunEarth().setStepSize(appSpeed));
+//        this.gravityEngine = getEngine(AstronomicObjectSystemFactory.sunMercuryEarth().setStepSize(appSpeed));
+//        this.gravityEngine = getEngine(AstronomicObjectSystemFactory.sunMercuryVenusEarth().setStepSize(appSpeed));
+//        this.gravityEngine = getEngine(AstronomicObjectSystemFactory.sunMercuryVenusEarthMars().setStepSize(appSpeed));
+//        this.gravityEngine = getEngine(AstronomicObjectSystemFactory.sunMercuryVenusEarthMarsJupiter().setStepSize(appSpeed));
+//        this.gravityEngine = getEngine(AstronomicObjectSystemFactory.sunMercuryVenusEarthMarsJupiterSaturn().setStepSize(appSpeed));
+        this.gravityEngine = getEngine(AstronomicObjectSystemFactory.solarSystem().setStepSize(appSpeed));
+
+
+
+
+
+//        this.gravityEngine = getEngine(AstronomicObjectSystemFactory.earthMoon().setStepSize(1.0));
+//        this.gravityEngine = getEngine(AstronomicObjectSystemFactory.cEarthEcMoon().setStepSize(appSpeed));
+//        this.gravityEngine = getEngine(AstronomicObjectSystemFactory.sunEarthMoon().setStepSize(10));
 //        this.gravityEngine = getEngine(AstronomicObjectSystemFactory.biggerEarthAndSun());
+//        this.gravityEngine = getEngine(AstronomicObjectSystemFactory.sunBiggerEarthBiggerMoon());
 //        this.gravityEngine = getEngine(AstronomicObjectSystemFactory.earthSunWithSpeed(13.0));
-        this.gravityEngine = getEngine(AstronomicObjectSystemFactory.abstractPlanet01AbstractPlane02Sun());
+//        this.gravityEngine = getEngine(AstronomicObjectSystemFactory.abstractPlanet01AbstractPlane02Sun());
 //        this.gravityEngine = getEngine(AstronomicObjectSystemFactory.sunEarthBiggerVelocityMoonBiggerVelocity());
 //        this.gravityEngine = getEngine(AstronomicObjectSystemFactory.earthBiggerVelocitySun_AroundSun());
 //        this.gravityEngine = getEngine(AstronomicObjectSystemFactory.earthInCenterMoon());
 //        this.gravityEngine = getEngine();
         gravityEngine.attachToNode(guiNode, envNode);
-
 
 
         try {
@@ -123,7 +142,7 @@ public class Main extends SimpleApplication {
     public void simpleUpdate(final float tpf) {
         if (isRunning) {
 //            if(limiter == 10) {
-                gravityEngine.nextStep(tpf);
+            gravityEngine.nextStep(tpf);
 //                limiter = 0;
 //            }
 //            limiter++;
@@ -137,11 +156,11 @@ public class Main extends SimpleApplication {
         //TODO: add render code
     }
 
-    public void startCameraPosition(){
+    public void startCameraPosition() {
         cam.setLocation(new Vector3f(-1000, 0, 12000));
     }
 
-    private void initializeCustomInputMapping(){
+    private void initializeCustomInputMapping() {
         inputManager.addMapping("Toggle fly camera", new KeyTrigger(KeyInput.KEY_C));
         inputManager.addMapping("Pause Game", new KeyTrigger(KeyInput.KEY_P));
         inputManager.addMapping("Toggle GUI", new KeyTrigger(KeyInput.KEY_G));
@@ -151,12 +170,12 @@ public class Main extends SimpleApplication {
 
             @Override
             public void onAction(String name, boolean isPressed, float tpf) {
-                switch (name){
+                switch (name) {
                     case "Pause Game":
                         if (!isPressed) isRunning = !isRunning;
                         break;
                     case "Toggle GUI":
-                        if(!isPressed) guiController.setVisible(!guiController.isVisible());
+                        if (!isPressed) guiController.setVisible(!guiController.isVisible());
                 }
             }
         };
