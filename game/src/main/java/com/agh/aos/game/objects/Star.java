@@ -16,6 +16,11 @@ public class Star extends AstronomicObjectView {
         initLightSource();
     }
 
+    public Star(Geometry geometry, AstronomicObject astronomicObject, Label label) {
+        super(geometry, astronomicObject, label);
+        initLightSource();
+    }
+
     private void initLightSource(){
         lightSource = new PointLight();
         lightSource.setColor(ColorRGBA.White);

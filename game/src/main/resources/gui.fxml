@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="guiContainer" prefHeight="358.0" prefWidth="232.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ScrollPane fitToWidth="true" layoutX="14.0" layoutY="40.0" prefHeight="200.0" prefWidth="200.0">
+         <content>
+            <VBox fx:id="planetsManager" />
+         </content>
+      </ScrollPane>
+      <Text fill="WHITE" layoutX="14.0" layoutY="259.0" stroke="BLACK" strokeWidth="0.3" text="Camera speed:" />
+      <Slider fx:id="flyCameraSpeedSlider" layoutX="14.0" layoutY="274.0" max="15000.0" min="100.0" prefHeight="33.0" prefWidth="183.0" showTickLabels="true" value="2000.0" />
+      <Button layoutX="13.0" layoutY="312.0" mnemonicParsing="false" onAction="#resetCameraPosition" text="Reset cam position" />
+      <Text fill="WHITE" layoutX="14.0" layoutY="37.0" stroke="BLACK" strokeWidth="0.3" text="Planets:" />
+      <Button layoutX="114.0" layoutY="11.0" mnemonicParsing="false" onAction="#lockCamDirection" text="Find focused" />
+   </children>
+</AnchorPane>

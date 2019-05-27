@@ -11,10 +11,14 @@ public class Planet extends AstronomicObjectView {
         super(geometry, astronomicObject);
     }
 
+    public Planet(Geometry geometry, AstronomicObject astronomicObject, Label label) {
+        super(geometry, astronomicObject, label);
+    }
+
     @Override
     public void updateGeometry(float tpf) {
         geometry.setLocalTranslation(fromXYZToVector3f(astronomicObject.getPosition()));
-        geometry.rotate(0f, 0.1f * tpf, 0f);
+        geometry.rotate(0, 0, 0.1f*tpf);
     }
 
 }

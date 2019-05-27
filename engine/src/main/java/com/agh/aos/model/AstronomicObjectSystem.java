@@ -56,6 +56,6 @@ public class AstronomicObjectSystem {
                 }
         );
         epoch++;
-        this.printPositions();
+//        this.printPositions();
     }
 }

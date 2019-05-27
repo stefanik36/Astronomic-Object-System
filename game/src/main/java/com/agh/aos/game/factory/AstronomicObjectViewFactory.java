@@ -27,6 +27,9 @@ public class AstronomicObjectViewFactory {
         Material m = new Material(manager,
                 "Common/MatDefs/Misc/Unshaded.j3md");
         m.setColor("Color", ColorRGBA.Green);
+        m.setTexture("NormalMap",
+                manager.loadTexture("Textures/EarthHighRes/2k_earth_daymap.jpg"));
+
         Geometry geometry = createGeometry(obj, m); // only sun model is working XD
 
         return new Planet(geometry, obj);
@@ -35,7 +38,9 @@ public class AstronomicObjectViewFactory {
     public static Planet earth(AssetManager manager) {
         AstronomicObject obj = AstronomicObjectFactory.earth();
         Material m = new Material(manager, "Common/MatDefs/Misc/Unshaded.j3md");
-        m.setColor("Color", ColorRGBA.Green);
+        m.setTexture("NormalMap",
+                manager.loadTexture("Textures/EarthHighRes/2k_earth_daymap.jpg"));
+
         Geometry geometry = createGeometry(obj, m); // only sun model is working XD
 
         return new Planet(geometry, obj);
@@ -75,14 +80,21 @@ public class AstronomicObjectViewFactory {
 
     private static AstronomicObjectView toPlanet(AstronomicObject ao, AssetManager manager) {
         Material m = new Material(manager, "Common/MatDefs/Misc/Unshaded.j3md");
-        m.setColor("Color", ColorRGBA.Green);
+//        m.setColor("Color", ColorRGBA.Green)
+
+        m.setTexture("ColorMap",
+                manager.loadTexture("Textures/EarthHighRes/2k_earth_daymap.jpg"));
+
         Geometry geometry = createGeometry(ao, m); // only sun model is working XD
-        return new Planet(geometry, ao);
+        var label = LabelFactory.textWithMarker(ao.getName(), manager);
+        return new Planet(geometry, ao, label);
     }
 
     private static AstronomicObjectView toStar(AstronomicObject ao, AssetManager manager) {
         Geometry geometry = createGeometry(ao, manager.loadMaterial("Materials/Sun.j3m"));
-        return new Star(geometry, ao);
+
+        var label = LabelFactory.textWithMarker(ao.getName(), manager);
+        return new Star(geometry, ao, label);
     }
 
 

@@ -2,20 +2,25 @@
 plugins {
     id 'java'
     id 'application'
+    id 'org.openjfx.javafxplugin' version '0.0.7'
 }
 
 group 'planetary-system2'
 version '1.0-SNAPSHOT'
 
-sourceCompatibility = 1.8
+sourceCompatibility = 1.11
 
 mainClassName = 'com.agh.aos.game.Main'
+
 
 
 
 repositories {
     mavenCentral()
     jcenter()
+    maven {
+        url  "https://dl.bintray.com/javasabr/maven"
+    }
 }
 
 jar {
@@ -35,8 +40,24 @@ dependencies {
     compile project(':engine')
     testCompile group: 'junit', name: 'junit', version: '4.12'
     compile "org.jmonkeyengine:jme3-core:3.2.2-stable"
+//    implementation 'com.jayfella:jme-jfx-11:1.1.0'
+//    compile 'com.jme3x:jme-jfx:1.7.5-Final'
     compile "org.jmonkeyengine:jme3-desktop:3.2.2-stable"
-    compile "org.jmonkeyengine:jme3-lwjgl:3.2.2-stable"
+    compile "org.jmonkeyengine:jme3-lwjgl3:3.2.2-stable"
     compile "org.jmonkeyengine:jme3-plugins:3.2.2-stable"
+
+    compile 'com.jayfella:jme-jfx-11:1.0.3'
 }
 
+javafx {
+    version = "11.0.2"
+    modules = [ 'javafx.controls', 'javafx.fxml' ]
+}
+
+run {
+    doFirst {
+        jvmArgs = [
+                '--add-exports', 'javafx.graphics/com.sun.javafx.application=ALL-UNNAMED'
+        ]
+    }
+}
