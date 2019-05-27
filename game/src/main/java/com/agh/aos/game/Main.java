@@ -4,7 +4,6 @@ import com.agh.aos.factory.AstronomicObjectSystemFactory;
 import com.agh.aos.game.factory.AstronomicObjectViewFactory;
 import com.agh.aos.game.gui.GuiController;
 import com.agh.aos.game.objects.AstronomicObjectView;
-import com.agh.aos.game.objects.FontManager;
 import com.agh.aos.model.AstronomicObjectSystem;
 import com.jayfella.jme.jfx.JavaFxUI;
 import com.jme3.app.SimpleApplication;
@@ -48,7 +47,7 @@ public class Main extends SimpleApplication {
     private AOSEngineWrapper gravityEngine = null;
     private Node textNode = new Node("text node");
     private Node envNode = new Node("environment node");
-    private CameraFocusManager cameraFocusManager = null;
+    private OnObjectCameraFocusHolder onObjectCameraFocusHolder = null;
 
     GuiController guiController = new GuiController(this);
     private boolean isRunning = true;
@@ -61,13 +60,12 @@ public class Main extends SimpleApplication {
         flyCam.setEnabled(false);
         flyCam.setMoveSpeed(2000f);
 
-        cameraFocusManager = new CameraFocusManager(cam);
+        onObjectCameraFocusHolder = new OnObjectCameraFocusHolder(cam);
         startCameraPosition();
         cam.setFrustumFar(300000);
         cam.onFrameChange();
 
         JavaFxUI.initialize(this);
-        FontManager.initlialize(assetManager, guiFont);
         initializeSky();
         initializeCustomInputMapping();
 
@@ -131,7 +129,7 @@ public class Main extends SimpleApplication {
 //            limiter++;
         }
         gravityEngine.updateView(cam, tpf);
-        cameraFocusManager.focusOnTargetIfSet();
+        onObjectCameraFocusHolder.focusOnTargetIfSet();
     }
 
     @Override
@@ -185,7 +183,7 @@ public class Main extends SimpleApplication {
         inputManager.addListener(listener, "Toggle fly camera");
     }
 
-    public CameraFocusManager getCameraFocusManager() {
-        return cameraFocusManager;
+    public OnObjectCameraFocusHolder getOnObjectCameraFocusHolder() {
+        return onObjectCameraFocusHolder;
     }
 }

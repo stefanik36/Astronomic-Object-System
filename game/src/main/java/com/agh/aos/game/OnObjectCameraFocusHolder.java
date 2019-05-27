@@ -3,13 +3,13 @@ package com.agh.aos.game;
 import com.agh.aos.game.objects.AstronomicObjectView;
 import com.jme3.renderer.Camera;
 
-public class CameraFocusManager {
+public class OnObjectCameraFocusHolder {
 
     private Camera camera;
     private AstronomicObjectView focusedTarget;
     private boolean lockCameraDirection = false;
 
-    public CameraFocusManager(Camera camera) {
+    public OnObjectCameraFocusHolder(Camera camera) {
         this.camera = camera;
     }
 

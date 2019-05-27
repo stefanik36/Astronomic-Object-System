@@ -38,7 +38,7 @@ public class GuiController implements Initializable {
 
     @FXML
     void lockCamDirection(ActionEvent event){
-        var man = main.getCameraFocusManager();
+        var man = main.getOnObjectCameraFocusHolder();
         man.setLockCameraDirection(true);
     }
 
@@ -52,10 +52,10 @@ public class GuiController implements Initializable {
                         .filter( x -> x instanceof ToggleButton)
                         .map(x -> (ToggleButton) x)
                         .forEach(x -> x.setSelected(false));
-                main.getCameraFocusManager().setFocusedTarget(view);
+                main.getOnObjectCameraFocusHolder().setFocusedTarget(view);
             }
             else{
-                main.getCameraFocusManager().setFocusedTarget(null);
+                main.getOnObjectCameraFocusHolder().setFocusedTarget(null);
             }
         });
         planetsManager.getChildren().add(btn);
