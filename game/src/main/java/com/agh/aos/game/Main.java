@@ -7,9 +7,11 @@ import com.agh.aos.game.objects.AstronomicObjectView;
 import com.agh.aos.model.AstronomicObjectSystem;
 import com.jayfella.jme.jfx.JavaFxUI;
 import com.jme3.app.SimpleApplication;
+import com.jme3.font.BitmapText;
 import com.jme3.input.KeyInput;
 import com.jme3.input.controls.ActionListener;
 import com.jme3.input.controls.KeyTrigger;
+import com.jme3.math.ColorRGBA;
 import com.jme3.math.Vector3f;
 import com.jme3.renderer.RenderManager;
 import com.jme3.scene.Node;
@@ -17,6 +19,7 @@ import com.jme3.system.AppSettings;
 import com.jme3.texture.Texture;
 import com.jme3.util.SkyFactory;
 import io.vavr.collection.List;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 
 import java.io.IOException;
@@ -40,23 +43,29 @@ public class Main extends SimpleApplication {
         app.start();
     }
 
-//    TestJavaFx() {
-//        super(new StatsAppState());
-//    }
-
     private AOSEngineWrapper gravityEngine = null;
-    private Node textNode = new Node("text node");
     private Node envNode = new Node("environment node");
     private OnObjectCameraFocusHolder onObjectCameraFocusHolder = null;
 
-    GuiController guiController = new GuiController(this);
+    private GuiController guiController = new GuiController(this);
     private boolean isRunning = true;
+    private boolean isInitialized = false;
 
 
     @Override
+    public void simpleUpdate(final float tpf) {
+        if (!isInitialized) return;
+        if (isRunning) {
+            gravityEngine.nextStep(tpf);
+        }
+        gravityEngine.updateView(cam, tpf);
+        onObjectCameraFocusHolder.focusOnTargetIfSet();
+    }
+
+    @Override
     public void simpleInitApp() {
+        var initText = showInitializationMessage();
         rootNode.attachChild(envNode);
-        rootNode.attachChild(textNode);
         flyCam.setEnabled(false);
         flyCam.setMoveSpeed(2000f);
 
@@ -68,19 +77,25 @@ public class Main extends SimpleApplication {
         JavaFxUI.initialize(this);
         initializeSky();
         initializeCustomInputMapping();
+        initializeJavaFxGui();
 
-        /*
-         * when 60 frames per second: 60 sec * 1.0e+05 = 600 000 sec ~ 6.9444444 real days is 1 second of simulation for appSpeed = 1.0e+05
-         */
-        double appSpeed = 1.0e+05;
+        gravityEngineInitializationThread(initText).start();
 
+    }
+
+    private Thread gravityEngineInitializationThread(BitmapText initText) {
+        return new Thread(() -> {
+            /*
+             * when 60 frames per second: 60 sec * 1.0e+05 = 600 000 sec ~ 6.9444444 real days is 1 second of simulation for appSpeed = 1.0e+05
+             */
+            double appSpeed = 1.0e+05;
 //        this.gravityEngine = getEngine(AstronomicObjectSystemFactory.sunEarth().setStepSize(appSpeed));
 //        this.gravityEngine = getEngine(AstronomicObjectSystemFactory.sunMercuryEarth().setStepSize(appSpeed));
 //        this.gravityEngine = getEngine(AstronomicObjectSystemFactory.sunMercuryVenusEarth().setStepSize(appSpeed));
 //        this.gravityEngine = getEngine(AstronomicObjectSystemFactory.sunMercuryVenusEarthMars().setStepSize(appSpeed));
 //        this.gravityEngine = getEngine(AstronomicObjectSystemFactory.sunMercuryVenusEarthMarsJupiter().setStepSize(appSpeed));
 //        this.gravityEngine = getEngine(AstronomicObjectSystemFactory.sunMercuryVenusEarthMarsJupiterSaturn().setStepSize(appSpeed));
-        this.gravityEngine = getEngine(AstronomicObjectSystemFactory.solarSystem().setStepSize(appSpeed));
+            gravityEngine = getEngine(AstronomicObjectSystemFactory.solarSystem().setStepSize(appSpeed));
 
 
 //        this.gravityEngine = getEngine(AstronomicObjectSystemFactory.earthMoon().setStepSize(1.0));
@@ -94,19 +109,15 @@ public class Main extends SimpleApplication {
 //        this.gravityEngine = getEngine(AstronomicObjectSystemFactory.earthBiggerVelocitySun_AroundSun());
 //        this.gravityEngine = getEngine(AstronomicObjectSystemFactory.earthInCenterMoon());
 //        this.gravityEngine = getEngine();
-        gravityEngine.attachToNode(guiNode, envNode);
+            gravityEngine.attachToNode(guiNode, envNode);
 
-
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("gui.fxml"));
-            loader.setController(guiController);
-            JavaFxUI.attachChild(loader.load());
-            gravityEngine.getObjectViewList().forEach(x -> guiController.initializeObjButton(cam, x));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
+            isInitialized = true;
+            guiNode.detachChild(initText);
+//           TODO Here could be a problem if gui were not initialized
+            Platform.runLater(() -> gravityEngine.getObjectViewList().forEach(x -> guiController.initializeObjButton(cam, x)));
+        });
     }
+
 
     private AOSEngineWrapper getEngine(AstronomicObjectSystem astronomicObjectSystem) {
         List<AstronomicObjectView> astronomicObjects = AstronomicObjectViewFactory.toView(astronomicObjectSystem, this.assetManager);
@@ -123,6 +134,26 @@ public class Main extends SimpleApplication {
     }
 
 
+    private BitmapText showInitializationMessage() {
+        BitmapText initText = new BitmapText(guiFont);
+        initText.setSize(30);
+        initText.setText("Wait, initialization...");
+        initText.setColor(ColorRGBA.Red);
+        initText.setLocalTranslation(cam.getWidth() / 2.0f, cam.getHeight() / 2.0f, 0f);
+        guiNode.attachChild(initText);
+        return initText;
+    }
+
+    private void initializeJavaFxGui() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("gui.fxml"));
+            loader.setController(guiController);
+            JavaFxUI.attachChild(loader.load());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     private void initializeSky() {
         Texture west = getAssetManager().loadTexture("Textures/Sky/Milkyway/west.jpg");
         Texture east = getAssetManager().loadTexture("Textures/Sky/Milkyway/east.jpg");
@@ -133,25 +164,6 @@ public class Main extends SimpleApplication {
         getRootNode().attachChild(SkyFactory.createSky(getAssetManager(), west, east, north, south, up, down));
     }
 
-    int limiter = 0;
-
-    @Override
-    public void simpleUpdate(final float tpf) {
-        if (isRunning) {
-//            if(limiter == 10) {
-            gravityEngine.nextStep(tpf);
-//                limiter = 0;
-//            }
-//            limiter++;
-        }
-        gravityEngine.updateView(cam, tpf);
-        onObjectCameraFocusHolder.focusOnTargetIfSet();
-    }
-
-    @Override
-    public void simpleRender(RenderManager rm) {
-        //TODO: add render code
-    }
 
     public void startCameraPosition() {
         cam.setLocation(new Vector3f(-1000, 0, 12000));
