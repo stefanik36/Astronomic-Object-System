@@ -31,8 +31,6 @@ dependencies {
 */
 
 
-apply plugin: 'application'
-mainClassName = 'com.agh.aos.game.Main'
 
 allprojects {
   repositories {

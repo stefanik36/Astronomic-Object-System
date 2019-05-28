@@ -23,10 +23,11 @@ repositories {
     }
 }
 
+
 jar {
     manifest {
         attributes(
-                'Main-Class': 'com.agh.aos.game.Main'
+                'Main-Class': 'main.java.com.agh.aos.game.Main'
         )
     }
 }
@@ -35,13 +36,9 @@ jar {
 
 
 dependencies {
-//    compile project(':assets').sourceSets.main.output
-//    compile project(path: ':assets', configuration: 'generated')
     compile project(':engine')
     testCompile group: 'junit', name: 'junit', version: '4.12'
     compile "org.jmonkeyengine:jme3-core:3.2.2-stable"
-//    implementation 'com.jayfella:jme-jfx-11:1.1.0'
-//    compile 'com.jme3x:jme-jfx:1.7.5-Final'
     compile "org.jmonkeyengine:jme3-desktop:3.2.2-stable"
 //    compile "org.jmonkeyengine:jme3-lwjgl3:3.2.2-stable"
     compile "org.jmonkeyengine:jme3-plugins:3.2.2-stable"
