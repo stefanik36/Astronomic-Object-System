@@ -15,6 +15,41 @@ public class AstronomicObjectFactory {
      * PLANETS
      */
 
+
+    public static AstronomicObject cEarth() {
+        return new AstronomicObject(
+                AstronomicObject.AstronomicObjectType.EARTH,
+                "Earth",
+                Amount.valueOf(ConstantValues.EARTH_RADIUS_VALUE, METER),
+                Amount.valueOf(ConstantValues.EARTH_MASS_VALUE, KILOGRAM),
+                XYZ.valueOf(0.0, 0.0, 0.0, METER),
+                VectorMeasure.valueOf(0.0, 0.0, 0.0, METRES_PER_SECOND)
+        );
+    }
+
+
+    public static AstronomicObject mercury() {
+        return new AstronomicObject(
+                AstronomicObject.AstronomicObjectType.MERCURY,
+                "Mercury",
+                Amount.valueOf(ConstantValues.MERCURY_RADIUS_VALUE, METER),
+                Amount.valueOf(ConstantValues.MERCURY_MASS_VALUE, KILOGRAM),
+                XYZ.valueOf(-ConstantValues.MERCURY_POSITION_X_VALUE, 0.0, 0.0, METER),
+                VectorMeasure.valueOf(0.0, -ConstantValues.MERCURY_VELOCITY_V_VALUE, 0.0, METRES_PER_SECOND)
+        );
+    }
+
+    public static AstronomicObject venus() {
+        return new AstronomicObject(
+                AstronomicObject.AstronomicObjectType.VENUS,
+                "Venus",
+                Amount.valueOf(ConstantValues.VENUS_RADIUS_VALUE, METER),
+                Amount.valueOf(ConstantValues.VENUS_MASS_VALUE, KILOGRAM),
+                XYZ.valueOf(-ConstantValues.VENUS_POSITION_X_VALUE, 0.0, 0.0, METER),
+                VectorMeasure.valueOf(0.0, -ConstantValues.VENUS_VELOCITY_V_VALUE, 0.0, METRES_PER_SECOND)
+        );
+    }
+
     public static AstronomicObject earth() {
         return new AstronomicObject(
                 AstronomicObject.AstronomicObjectType.EARTH,
@@ -25,6 +60,73 @@ public class AstronomicObjectFactory {
                 VectorMeasure.valueOf(0.0, -ConstantValues.EARTH_VELOCITY_V_VALUE, 0.0, METRES_PER_SECOND)
         );
     }
+
+    public static AstronomicObject mars() {
+        return new AstronomicObject(
+                AstronomicObject.AstronomicObjectType.MARS,
+                "Mars",
+                Amount.valueOf(ConstantValues.MARS_RADIUS_VALUE, METER),
+                Amount.valueOf(ConstantValues.MARS_MASS_VALUE, KILOGRAM),
+                XYZ.valueOf(-ConstantValues.MARS_POSITION_X_VALUE, 0.0, 0.0, METER),
+                VectorMeasure.valueOf(0.0, -ConstantValues.MARS_VELOCITY_V_VALUE, 0.0, METRES_PER_SECOND)
+        );
+    }
+
+    public static AstronomicObject jupiter() {
+        return new AstronomicObject(
+                AstronomicObject.AstronomicObjectType.JUPITER,
+                "Jupiter",
+                Amount.valueOf(ConstantValues.JUPITER_RADIUS_VALUE, METER),
+                Amount.valueOf(ConstantValues.JUPITER_MASS_VALUE, KILOGRAM),
+                XYZ.valueOf(-ConstantValues.JUPITER_POSITION_X_VALUE, 0.0, 0.0, METER),
+                VectorMeasure.valueOf(0.0, -ConstantValues.JUPITER_VELOCITY_V_VALUE, 0.0, METRES_PER_SECOND)
+        );
+    }
+
+    public static AstronomicObject saturn() {
+        return new AstronomicObject(
+                AstronomicObject.AstronomicObjectType.SATURN,
+                "Saturn",
+                Amount.valueOf(ConstantValues.SATURN_RADIUS_VALUE, METER),
+                Amount.valueOf(ConstantValues.SATURN_MASS_VALUE, KILOGRAM),
+                XYZ.valueOf(-ConstantValues.SATURN_POSITION_X_VALUE, 0.0, 0.0, METER),
+                VectorMeasure.valueOf(0.0, -ConstantValues.SATURN_VELOCITY_V_VALUE, 0.0, METRES_PER_SECOND)
+        );
+    }
+
+    public static AstronomicObject uranus() {
+        return new AstronomicObject(
+                AstronomicObject.AstronomicObjectType.URANUS,
+                "Uranus",
+                Amount.valueOf(ConstantValues.URANUS_RADIUS_VALUE, METER),
+                Amount.valueOf(ConstantValues.URANUS_MASS_VALUE, KILOGRAM),
+                XYZ.valueOf(-ConstantValues.URANUS_POSITION_X_VALUE, 0.0, 0.0, METER),
+                VectorMeasure.valueOf(0.0, -ConstantValues.URANUS_VELOCITY_V_VALUE, 0.0, METRES_PER_SECOND)
+        );
+    }
+
+    public static AstronomicObject neptune() {
+        return new AstronomicObject(
+                AstronomicObject.AstronomicObjectType.NEPTUNE,
+                "Neptune",
+                Amount.valueOf(ConstantValues.NEPTUNE_RADIUS_VALUE, METER),
+                Amount.valueOf(ConstantValues.NEPTUNE_MASS_VALUE, KILOGRAM),
+                XYZ.valueOf(-ConstantValues.NEPTUNE_POSITION_X_VALUE, 0.0, 0.0, METER),
+                VectorMeasure.valueOf(0.0, -ConstantValues.NEPTUNE_VELOCITY_V_VALUE, 0.0, METRES_PER_SECOND)
+        );
+    }
+
+    public static AstronomicObject pluto() {
+        return new AstronomicObject(
+                AstronomicObject.AstronomicObjectType.PLUTO,
+                "Pluto",
+                Amount.valueOf(ConstantValues.PLUTO_RADIUS_VALUE, METER),
+                Amount.valueOf(ConstantValues.PLUTO_MASS_VALUE, KILOGRAM),
+                XYZ.valueOf(-ConstantValues.PLUTO_POSITION_X_VALUE, 0.0, 0.0, METER),
+                VectorMeasure.valueOf(0.0, -ConstantValues.PLUTO_VELOCITY_V_VALUE, 0.0, METRES_PER_SECOND)
+        );
+    }
+
     public static AstronomicObject earthInCenter() {
         return new AstronomicObject(
                 AstronomicObject.AstronomicObjectType.EARTH,
@@ -32,7 +134,7 @@ public class AstronomicObjectFactory {
                 Amount.valueOf(ConstantValues.EARTH_RADIUS_VALUE, METER),
                 Amount.valueOf(ConstantValues.EARTH_MASS_VALUE, KILOGRAM),
                 XYZ.valueOf(-ConstantValues.EARTH_POSITION_X_VALUE, 0.0, 0.0, METER),
-                VectorMeasure.valueOf(0.0, -ConstantValues.EARTH_VELOCITY_V_VALUE*1.0e+04, 0.0, METRES_PER_SECOND)
+                VectorMeasure.valueOf(0.0, -ConstantValues.EARTH_VELOCITY_V_VALUE * 1.0e+04, 0.0, METRES_PER_SECOND)
         );
     }
 
@@ -76,7 +178,7 @@ public class AstronomicObjectFactory {
                 Amount.valueOf(ConstantValues.EARTH_RADIUS_VALUE, METER),
                 Amount.valueOf(ConstantValues.EARTH_MASS_VALUE, KILOGRAM),
                 XYZ.valueOf(-ConstantValues.EARTH_POSITION_X_VALUE, 0.0, 0.0, METER),
-                VectorMeasure.valueOf(0.0, -ConstantValues.EARTH_VELOCITY_V_VALUE*1.0e+05, 0.0, METRES_PER_SECOND)
+                VectorMeasure.valueOf(0.0, -ConstantValues.EARTH_VELOCITY_V_VALUE * 1.0e+05, 0.0, METRES_PER_SECOND)
         );
     }
 
@@ -122,14 +224,47 @@ public class AstronomicObjectFactory {
      * SATELLITES
      */
 
+    public static AstronomicObject ecMoon() {
+        return new AstronomicObject(
+                AstronomicObject.AstronomicObjectType.MOON,
+                "Moon",
+                Amount.valueOf(ConstantValues.MOON_RADIUS_VALUE, METER),
+                Amount.valueOf(ConstantValues.MOON_MASS_VALUE, KILOGRAM),
+                XYZ.valueOf(-ConstantValues.MOON_POSITION_X_VALUE, 0.0, 0.0, METER),
+                VectorMeasure.valueOf(0.0, 0.0, 0.0, METRES_PER_SECOND)
+        );
+    }
+
     public static AstronomicObject moon() {
         return new AstronomicObject(
                 AstronomicObject.AstronomicObjectType.MOON,
                 "Moon",
-                Amount.valueOf(ConstantValues.MOON_RADIUS_VALUE*100, METER),
+                Amount.valueOf(ConstantValues.MOON_RADIUS_VALUE, METER),
                 Amount.valueOf(ConstantValues.MOON_MASS_VALUE, KILOGRAM),
-                XYZ.valueOf(- ConstantValues.MOON_POSITION_X_VALUE*10 -ConstantValues.EARTH_POSITION_X_VALUE, 0.0, 0.0, METER),
-                VectorMeasure.valueOf(0.0, -ConstantValues.EARTH_VELOCITY_V_VALUE*1.0e+05-ConstantValues.MOON_VELOCITY_V_VALUE*90, 0.0, METRES_PER_SECOND)
+                XYZ.valueOf(-ConstantValues.MOON_POSITION_X_VALUE - ConstantValues.EARTH_POSITION_X_VALUE, 0.0, 0.0, METER),
+                VectorMeasure.valueOf(0.0, -ConstantValues.MOON_VELOCITY_V_VALUE, 0.0, METRES_PER_SECOND)
+        );
+    }
+
+    public static AstronomicObject biggerMoon() {
+        return new AstronomicObject(
+                AstronomicObject.AstronomicObjectType.MOON,
+                "Moon",
+                Amount.valueOf(ConstantValues.MOON_RADIUS_VALUE * 10, METER),
+                Amount.valueOf(ConstantValues.MOON_MASS_VALUE, KILOGRAM),
+                XYZ.valueOf(-ConstantValues.MOON_POSITION_X_VALUE - ConstantValues.EARTH_POSITION_X_VALUE, 0.0, 0.0, METER),
+                VectorMeasure.valueOf(0.0, -ConstantValues.EARTH_VELOCITY_V_VALUE - ConstantValues.MOON_VELOCITY_V_VALUE, 0.0, METRES_PER_SECOND)
+        );
+    }
+
+    public static AstronomicObject moonExperimental() {
+        return new AstronomicObject(
+                AstronomicObject.AstronomicObjectType.MOON,
+                "Moon",
+                Amount.valueOf(ConstantValues.MOON_RADIUS_VALUE * 100, METER),
+                Amount.valueOf(ConstantValues.MOON_MASS_VALUE, KILOGRAM),
+                XYZ.valueOf(-ConstantValues.MOON_POSITION_X_VALUE * 10 - ConstantValues.EARTH_POSITION_X_VALUE, 0.0, 0.0, METER),
+                VectorMeasure.valueOf(0.0, -ConstantValues.EARTH_VELOCITY_V_VALUE * 1.0e+05 - ConstantValues.MOON_VELOCITY_V_VALUE * 90, 0.0, METRES_PER_SECOND)
         );
     }
 
@@ -143,6 +278,5 @@ public class AstronomicObjectFactory {
                 VectorMeasure.valueOf(0.0, ConstantValues.MOON_VELOCITY_V_VALUE, 0.0, METRES_PER_SECOND)//* 1.0e+02
         );
     }
-
 
 }

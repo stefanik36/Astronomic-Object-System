@@ -9,7 +9,6 @@ import org.jscience.physics.amount.Amount;
 
 import javax.measure.VectorMeasure;
 import javax.measure.quantity.*;
-import javax.measure.unit.Unit;
 
 import static javax.measure.unit.SI.*;
 
@@ -19,7 +18,9 @@ public class AstronomicObject {
      * MARS, SATURN etc. types for view (GUI)
      */
     public enum AstronomicObjectType {
-        STAR, SUN, PLANET, EARTH, SATELLITE, MOON
+        STAR, SUN,
+        PLANET, EARTH, MERCURY, VENUS, MARS, JUPITER, SATURN, URANUS, NEPTUNE, PLUTO,
+        SATELLITE, MOON
     }
 
     private AstronomicObjectType type;
@@ -33,13 +34,16 @@ public class AstronomicObject {
     private VectorMeasure<Velocity> velocity;
     private VectorMeasure<Acceleration> acceleration;
 
+    private double stepSize;
+
     public AstronomicObject(AstronomicObjectType type, String name, Amount<Length> radius, Amount<Mass> mass, XYZ position, VectorMeasure<Velocity> velocity) {
         this.type = type;
         this.name = name;
         this.radius = radius;
         this.mass = mass;
         this.position = position;
-        this.velocity = velocity;
+        this.stepSize = 1.0;
+        setVelocity(velocity);
         this.acceleration = VectorMeasure.valueOf(0.0, 0.0, 0.0, METERS_PER_SQUARE_SECOND);
     }
 
@@ -81,13 +85,22 @@ public class AstronomicObject {
 
 
         double value = gravitationalConstant
+                .times(Math.pow(stepSize, 2))
                 .times(by.getMass())
                 .divide(distance.times(distance))
                 .to(METERS_PER_SQUARE_SECOND)
                 .doubleValue(METERS_PER_SQUARE_SECOND);
 
-
         Float64Vector f64Result = norm.times(value);
+
+//        System.out.println(off.name
+//                + " -> " + by.getName()
+//                + " v: " + value
+//                + " | " + f64Result
+//                + " gc* " + gravitationalConstant.times(Math.pow(stepSize, 2)).toString()
+//                + " m " + by.getMass().toString()
+//                + " d*d " + distance.times(distance)
+//        );
 
         return VectorUtil.float64VectorToVectorMeasure(f64Result, METERS_PER_SQUARE_SECOND);
     }
@@ -101,7 +114,10 @@ public class AstronomicObject {
 
 
     public void move() {
-        this.position = XYZ.valueOf(position.toVector(METER).plus(Float64Vector.valueOf(velocity.getValue())), METER);
+        this.position = XYZ.valueOf(
+                position.toVector(METER).plus(Float64Vector.valueOf(this.velocity.getValue())),
+                METER
+        );
     }
 
     public AstronomicObjectType getType() {
@@ -149,7 +165,7 @@ public class AstronomicObject {
     }
 
     public void setVelocity(VectorMeasure<Velocity> velocity) {
-        this.velocity = velocity;
+        this.velocity = VectorUtil.float64VectorToVectorMeasure(Float64Vector.valueOf(velocity.getValue()).times(stepSize), METERS_PER_SECOND);
     }
 
     public VectorMeasure<Acceleration> getAcceleration() {
@@ -158,5 +174,15 @@ public class AstronomicObject {
 
     public void setAcceleration(VectorMeasure<Acceleration> acceleration) {
         this.acceleration = acceleration;
+    }
+
+    public double getStepSize() {
+        return stepSize;
+    }
+
+    public void setStepSize(double stepSize) {
+        this.velocity = VectorUtil.float64VectorToVectorMeasure(Float64Vector.valueOf(velocity.getValue()).times(1 / this.stepSize), METERS_PER_SECOND);
+        this.stepSize = stepSize;
+        setVelocity(this.velocity);
     }
 }
