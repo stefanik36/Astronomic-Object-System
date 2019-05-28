@@ -18,7 +18,7 @@ public class Planet extends AstronomicObjectView {
     @Override
     public void updateGeometry(float tpf) {
         geometry.setLocalTranslation(fromXYZToVector3f(astronomicObject.getPosition()));
-        geometry.rotate(0, 0, 0.1f*tpf);
+        geometry.rotate(0, 0, 0.1f * tpf);
     }
 
 }

@@ -31,16 +31,22 @@ public class AOSEngineWrapper {
 //        objectViewList.forEach(x -> x.updateGeometry(tpf));
     }
 
-    public void updateView(Camera cam, float tpf){
-        objectViewList.forEach(x -> {x.updateGeometry(tpf); x.updateLabel(cam, tpf);});
+    public void updateView(Camera cam, float tpf) {
+        objectViewList.forEach(x -> {
+            x.updateGeometry(tpf);
+            x.updateLabel(cam, tpf);
+        });
     }
-
 
 
     public void attachToNode(Node textNode, Node envNode) {
         objectViewList.forEach(x -> x.addToNode(textNode, envNode));
     }
 
+
+    public AstronomicObjectSystem getAstronomicObjectSystem() {
+        return astronomicObjectSystem;
+    }
 
     public List<AstronomicObjectView> getObjectViewList() {
         return objectViewList;

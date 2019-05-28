@@ -17,10 +17,10 @@ public class OnObjectCameraFocusHolder {
         this.focusedTarget = focusedView;
     }
 
-    public void focusOnTargetIfSet(){
-        if(focusedTarget != null) {
+    public void focusOnTargetIfSet() {
+        if (focusedTarget != null) {
             var vec = focusedTarget.focusCameraOn(camera);
-            if(lockCameraDirection){
+            if (lockCameraDirection) {
                 camera.lookAt(vec, camera.getUp());
                 lockCameraDirection = false;
             }

@@ -83,9 +83,6 @@ public class Main extends SimpleApplication {
         this.gravityEngine = getEngine(AstronomicObjectSystemFactory.solarSystem().setStepSize(appSpeed));
 
 
-
-
-
 //        this.gravityEngine = getEngine(AstronomicObjectSystemFactory.earthMoon().setStepSize(1.0));
 //        this.gravityEngine = getEngine(AstronomicObjectSystemFactory.cEarthEcMoon().setStepSize(appSpeed));
 //        this.gravityEngine = getEngine(AstronomicObjectSystemFactory.sunEarthMoon().setStepSize(10));
@@ -204,5 +201,13 @@ public class Main extends SimpleApplication {
 
     public OnObjectCameraFocusHolder getOnObjectCameraFocusHolder() {
         return onObjectCameraFocusHolder;
+    }
+
+    public double getAppSpeed() {
+        return gravityEngine.getAstronomicObjectSystem().getStepSize();
+    }
+
+    public void setAppSpeed(double appSpeed) {
+        gravityEngine.getAstronomicObjectSystem().setStepSize(1.0 * Math.pow(10, appSpeed));
     }
 }

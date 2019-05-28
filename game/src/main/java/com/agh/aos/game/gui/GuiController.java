@@ -16,45 +16,43 @@ import java.util.ResourceBundle;
 
 public class GuiController implements Initializable {
 
-    Main main;
-
+    private Main main;
     @FXML
     VBox planetsManager;
-
     @FXML
     Slider flyCameraSpeedSlider;
-
     @FXML
     AnchorPane guiContainer;
+    @FXML
+    Slider simSpeedSlider;
 
     public GuiController(Main main) {
         this.main = main;
     }
 
     @FXML
-    void resetCameraPosition(ActionEvent event){
+    void resetCameraPosition(ActionEvent event) {
         main.startCameraPosition();
     }
 
     @FXML
-    void lockCamDirection(ActionEvent event){
+    void lockCamDirection(ActionEvent event) {
         var man = main.getOnObjectCameraFocusHolder();
         man.setLockCameraDirection(true);
     }
 
 
-    public void initializeObjButton(Camera cam, AstronomicObjectView view){
+    public void initializeObjButton(Camera cam, AstronomicObjectView view) {
         var btn = new ToggleButton(view.getAstronomicObject().getName());
         btn.setOnAction(event -> {
-            if(btn.isSelected()){
+            if (btn.isSelected()) {
                 planetsManager.getChildren().stream()
                         .filter(x -> !x.equals(btn))
-                        .filter( x -> x instanceof ToggleButton)
+                        .filter(x -> x instanceof ToggleButton)
                         .map(x -> (ToggleButton) x)
                         .forEach(x -> x.setSelected(false));
                 main.getOnObjectCameraFocusHolder().setFocusedTarget(view);
-            }
-            else{
+            } else {
                 main.getOnObjectCameraFocusHolder().setFocusedTarget(null);
             }
         });
@@ -62,18 +60,20 @@ public class GuiController implements Initializable {
     }
 
 
-    public void setVisible(boolean s){
+    public void setVisible(boolean s) {
         guiContainer.setVisible(s);
     }
 
-    public boolean isVisible(){
-       return guiContainer.isVisible();
+    public boolean isVisible() {
+        return guiContainer.isVisible();
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        flyCameraSpeedSlider.valueProperty().addListener((observable, oldValue, newValue) -> main.getFlyByCamera().setMoveSpeed(newValue.floatValue()) );
+        flyCameraSpeedSlider.valueProperty().addListener((observable, oldValue, newValue) -> main.getFlyByCamera().setMoveSpeed(newValue.floatValue()));
+
+        simSpeedSlider.valueProperty().addListener((observable, oldValue, newValue) -> main.setAppSpeed(newValue.doubleValue()));
 
     }
 }

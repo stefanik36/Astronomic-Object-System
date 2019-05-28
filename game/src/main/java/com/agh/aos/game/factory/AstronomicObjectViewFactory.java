@@ -11,6 +11,7 @@ import com.jme3.material.Material;
 import com.jme3.math.ColorRGBA;
 import com.jme3.scene.Geometry;
 import com.jme3.scene.shape.Sphere;
+import com.jme3.texture.Texture;
 import com.jme3.util.TangentBinormalGenerator;
 import io.vavr.collection.List;
 
@@ -61,12 +62,33 @@ public class AstronomicObjectViewFactory {
         return astronomicObjectSystem.getAstronomicObjectList().map(ao -> {
             if (starMaterialTypes.contains(ao.getType())) {
                 return toStar(ao, manager);
-            } else if (planetMaterialTypes.contains(ao.getType())) {
-                return toPlanet(ao, manager);
+//            } else if (planetMaterialTypes.contains(ao.getType())) {
+//                return toPlanet(ao, manager);
             } else if (satellitesMaterialTypes.contains(ao.getType())) {
                 return toSatellites(ao, manager);
             } else {
-                return toOther(ao, manager);
+                switch (ao.getType()) {
+                    case EARTH:
+                        return toEarth(ao, manager);
+                    case MARS:
+                        return toMars(ao, manager);
+                    case MERCURY:
+                        return toMercury(ao, manager);
+                    case VENUS:
+                        return toVenus(ao, manager);
+                    case JUPITER:
+                        return toJupiter(ao, manager);
+                    case SATURN:
+                        return toSaturn(ao, manager);
+                    case NEPTUNE:
+                        return toNeptun(ao, manager);
+                    case URANUS:
+                        return toUranus(ao, manager);
+                    case PLUTO:
+                        return toPluto(ao, manager);
+                    default:
+                        return toOther(ao, manager);
+                }
 //                throw new RuntimeException(new UnsupportedOperationException()); //TODO set other materials
             }
         });
@@ -81,13 +103,47 @@ public class AstronomicObjectViewFactory {
         return new Planet(geometry, ao, label);
     }
 
-    private static AstronomicObjectView toPlanet(AstronomicObject ao, AssetManager manager) {
+    private static AstronomicObjectView toPluto(AstronomicObject ao, AssetManager manager) {
+        return toPlanet("Textures/pluto_diffuse.jpg", ao, manager);
+    }
+
+    private static AstronomicObjectView toUranus(AstronomicObject ao, AssetManager manager) {
+        return toPlanet("Textures/uranus_diffuse.jpg", ao, manager);
+    }
+
+    private static AstronomicObjectView toNeptun(AstronomicObject ao, AssetManager manager) {
+        return toPlanet("Textures/neptune_diffuse.jpg", ao, manager);
+    }
+
+    private static AstronomicObjectView toSaturn(AstronomicObject ao, AssetManager manager) {
+        return toPlanet("Textures/saturn_diffuse.jpg", ao, manager);
+    }
+
+    private static AstronomicObjectView toJupiter(AstronomicObject ao, AssetManager manager) {
+        return toPlanet("Textures/jupiter_diffuse.jpg", ao, manager);
+    }
+
+    private static AstronomicObjectView toMercury(AstronomicObject ao, AssetManager manager) {
+        return toPlanet("Textures/mercury_diffuse.jpg", ao, manager);
+    }
+
+    private static AstronomicObjectView toVenus(AstronomicObject ao, AssetManager manager) {
+        return toPlanet("Textures/venus_diffuse.jpg", ao, manager);
+    }
+
+    private static AstronomicObjectView toMars(AstronomicObject ao, AssetManager manager) {
+        return toPlanet("Textures/mars_diffuse.jpg", ao, manager);
+    }
+
+
+    private static AstronomicObjectView toEarth(AstronomicObject ao, AssetManager manager) {
+        return toPlanet("Textures/EarthHighRes/2k_earth_daymap.jpg", ao, manager);
+    }
+
+    private static AstronomicObjectView toPlanet(String texture, AstronomicObject ao, AssetManager manager) {
         Material m = new Material(manager, "Common/MatDefs/Misc/Unshaded.j3md");
-//        m.setColor("Color", ColorRGBA.Green)
-
         m.setTexture("ColorMap",
-                manager.loadTexture("Textures/EarthHighRes/2k_earth_daymap.jpg"));
-
+                manager.loadTexture(texture));
         Geometry geometry = createGeometry(ao, m);
         var label = LabelFactory.textWithMarker(ao.getName(), manager);
         return new Planet(geometry, ao, label);

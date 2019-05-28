@@ -18,8 +18,6 @@ public abstract class AstronomicObjectView {
     public AstronomicObjectView(Geometry geometry, AstronomicObject astronomicObject) {
         this.geometry = geometry;
         this.astronomicObject = astronomicObject;
-
-//        initializeLabel();
     }
 
 
@@ -27,7 +25,7 @@ public abstract class AstronomicObjectView {
         this.geometry = geometry;
         this.astronomicObject = astronomicObject;
         this.label = label;
-        if(this.label != null){
+        if (this.label != null) {
             displayLabel = true;
         }
     }
@@ -63,7 +61,7 @@ public abstract class AstronomicObjectView {
         this.astronomicObject = astronomicObject;
     }
 
-    private float unwrapRadius(){
+    private float unwrapRadius() {
         return ((Sphere) geometry.getMesh()).radius;
     }
 }

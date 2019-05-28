@@ -5,6 +5,7 @@ import com.jme3.light.PointLight;
 import com.jme3.math.ColorRGBA;
 import com.jme3.math.Vector3f;
 import com.jme3.scene.Geometry;
+
 import static com.agh.aos.game.Utils3d.*;
 
 public class Star extends AstronomicObjectView {
@@ -21,7 +22,7 @@ public class Star extends AstronomicObjectView {
         initLightSource();
     }
 
-    private void initLightSource(){
+    private void initLightSource() {
         lightSource = new PointLight();
         lightSource.setColor(ColorRGBA.White);
         lightSource.setRadius(1000);

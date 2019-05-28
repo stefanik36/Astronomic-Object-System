@@ -9,13 +9,10 @@ import com.jme3.scene.shape.Quad;
 
 public class LabelFactory {
 
-//    public static Label textWithMarker(AssetManager manager){
-//
-//    }
 
     public static Label textWithMarker(String text, AssetManager manager) {
         var font = manager.loadFont("Interface/Fonts/Default.fnt");
-        var q = new Quad(5f,5f);
+        var q = new Quad(5f, 5f);
         var geom = new Geometry("Marker" + text, q);
         var material = new Material(manager, "Common/MatDefs/Misc/Unshaded.j3md");
         material.setColor("Color", ColorRGBA.Blue);
