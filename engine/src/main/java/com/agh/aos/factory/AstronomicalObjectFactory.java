@@ -1,6 +1,6 @@
 package com.agh.aos.factory;
 
-import com.agh.aos.model.AstronomicObject;
+import com.agh.aos.model.AstronomicalObject;
 import com.agh.aos.util.ConstantValues;
 import org.jscience.geography.coordinates.XYZ;
 import org.jscience.physics.amount.Amount;
@@ -9,16 +9,16 @@ import javax.measure.VectorMeasure;
 
 import static javax.measure.unit.SI.*;
 
-public class AstronomicObjectFactory {
+public class AstronomicalObjectFactory {
 
     /*
      * PLANETS
      */
 
 
-    public static AstronomicObject cEarth() {
-        return new AstronomicObject(
-                AstronomicObject.AstronomicObjectType.EARTH,
+    public static AstronomicalObject cEarth() {
+        return new AstronomicalObject(
+                AstronomicalObject.AstronomicObjectType.EARTH,
                 "Earth",
                 Amount.valueOf(ConstantValues.EARTH_RADIUS_VALUE, METER),
                 Amount.valueOf(ConstantValues.EARTH_MASS_VALUE, KILOGRAM),
@@ -28,9 +28,9 @@ public class AstronomicObjectFactory {
     }
 
 
-    public static AstronomicObject mercury() {
-        return new AstronomicObject(
-                AstronomicObject.AstronomicObjectType.MERCURY,
+    public static AstronomicalObject mercury() {
+        return new AstronomicalObject(
+                AstronomicalObject.AstronomicObjectType.MERCURY,
                 "Mercury",
                 Amount.valueOf(ConstantValues.MERCURY_RADIUS_VALUE, METER),
                 Amount.valueOf(ConstantValues.MERCURY_MASS_VALUE, KILOGRAM),
@@ -39,9 +39,9 @@ public class AstronomicObjectFactory {
         );
     }
 
-    public static AstronomicObject venus() {
-        return new AstronomicObject(
-                AstronomicObject.AstronomicObjectType.VENUS,
+    public static AstronomicalObject venus() {
+        return new AstronomicalObject(
+                AstronomicalObject.AstronomicObjectType.VENUS,
                 "Venus",
                 Amount.valueOf(ConstantValues.VENUS_RADIUS_VALUE, METER),
                 Amount.valueOf(ConstantValues.VENUS_MASS_VALUE, KILOGRAM),
@@ -50,9 +50,9 @@ public class AstronomicObjectFactory {
         );
     }
 
-    public static AstronomicObject earth() {
-        return new AstronomicObject(
-                AstronomicObject.AstronomicObjectType.EARTH,
+    public static AstronomicalObject earth() {
+        return new AstronomicalObject(
+                AstronomicalObject.AstronomicObjectType.EARTH,
                 "Earth",
                 Amount.valueOf(ConstantValues.EARTH_RADIUS_VALUE, METER),
                 Amount.valueOf(ConstantValues.EARTH_MASS_VALUE, KILOGRAM),
@@ -61,9 +61,9 @@ public class AstronomicObjectFactory {
         );
     }
 
-    public static AstronomicObject mars() {
-        return new AstronomicObject(
-                AstronomicObject.AstronomicObjectType.MARS,
+    public static AstronomicalObject mars() {
+        return new AstronomicalObject(
+                AstronomicalObject.AstronomicObjectType.MARS,
                 "Mars",
                 Amount.valueOf(ConstantValues.MARS_RADIUS_VALUE, METER),
                 Amount.valueOf(ConstantValues.MARS_MASS_VALUE, KILOGRAM),
@@ -72,9 +72,9 @@ public class AstronomicObjectFactory {
         );
     }
 
-    public static AstronomicObject jupiter() {
-        return new AstronomicObject(
-                AstronomicObject.AstronomicObjectType.JUPITER,
+    public static AstronomicalObject jupiter() {
+        return new AstronomicalObject(
+                AstronomicalObject.AstronomicObjectType.JUPITER,
                 "Jupiter",
                 Amount.valueOf(ConstantValues.JUPITER_RADIUS_VALUE, METER),
                 Amount.valueOf(ConstantValues.JUPITER_MASS_VALUE, KILOGRAM),
@@ -83,9 +83,9 @@ public class AstronomicObjectFactory {
         );
     }
 
-    public static AstronomicObject saturn() {
-        return new AstronomicObject(
-                AstronomicObject.AstronomicObjectType.SATURN,
+    public static AstronomicalObject saturn() {
+        return new AstronomicalObject(
+                AstronomicalObject.AstronomicObjectType.SATURN,
                 "Saturn",
                 Amount.valueOf(ConstantValues.SATURN_RADIUS_VALUE, METER),
                 Amount.valueOf(ConstantValues.SATURN_MASS_VALUE, KILOGRAM),
@@ -94,9 +94,9 @@ public class AstronomicObjectFactory {
         );
     }
 
-    public static AstronomicObject uranus() {
-        return new AstronomicObject(
-                AstronomicObject.AstronomicObjectType.URANUS,
+    public static AstronomicalObject uranus() {
+        return new AstronomicalObject(
+                AstronomicalObject.AstronomicObjectType.URANUS,
                 "Uranus",
                 Amount.valueOf(ConstantValues.URANUS_RADIUS_VALUE, METER),
                 Amount.valueOf(ConstantValues.URANUS_MASS_VALUE, KILOGRAM),
@@ -105,9 +105,9 @@ public class AstronomicObjectFactory {
         );
     }
 
-    public static AstronomicObject neptune() {
-        return new AstronomicObject(
-                AstronomicObject.AstronomicObjectType.NEPTUNE,
+    public static AstronomicalObject neptune() {
+        return new AstronomicalObject(
+                AstronomicalObject.AstronomicObjectType.NEPTUNE,
                 "Neptune",
                 Amount.valueOf(ConstantValues.NEPTUNE_RADIUS_VALUE, METER),
                 Amount.valueOf(ConstantValues.NEPTUNE_MASS_VALUE, KILOGRAM),
@@ -116,9 +116,9 @@ public class AstronomicObjectFactory {
         );
     }
 
-    public static AstronomicObject pluto() {
-        return new AstronomicObject(
-                AstronomicObject.AstronomicObjectType.PLUTO,
+    public static AstronomicalObject pluto() {
+        return new AstronomicalObject(
+                AstronomicalObject.AstronomicObjectType.PLUTO,
                 "Pluto",
                 Amount.valueOf(ConstantValues.PLUTO_RADIUS_VALUE, METER),
                 Amount.valueOf(ConstantValues.PLUTO_MASS_VALUE, KILOGRAM),
@@ -127,9 +127,9 @@ public class AstronomicObjectFactory {
         );
     }
 
-    public static AstronomicObject earthInCenter() {
-        return new AstronomicObject(
-                AstronomicObject.AstronomicObjectType.EARTH,
+    public static AstronomicalObject earthInCenter() {
+        return new AstronomicalObject(
+                AstronomicalObject.AstronomicObjectType.EARTH,
                 "Earth",
                 Amount.valueOf(ConstantValues.EARTH_RADIUS_VALUE, METER),
                 Amount.valueOf(ConstantValues.EARTH_MASS_VALUE, KILOGRAM),
@@ -138,9 +138,9 @@ public class AstronomicObjectFactory {
         );
     }
 
-    public static AstronomicObject biggerEarth() {
-        return new AstronomicObject(
-                AstronomicObject.AstronomicObjectType.PLANET,
+    public static AstronomicalObject biggerEarth() {
+        return new AstronomicalObject(
+                AstronomicalObject.AstronomicObjectType.EARTH,
                 "Earth",
                 Amount.valueOf(6.371e+07, METER),
                 Amount.valueOf(ConstantValues.EARTH_MASS_VALUE, KILOGRAM),
@@ -149,9 +149,9 @@ public class AstronomicObjectFactory {
         );
     }
 
-    public static AstronomicObject abstractPlanet01() {
-        return new AstronomicObject(
-                AstronomicObject.AstronomicObjectType.PLANET,
+    public static AstronomicalObject abstractPlanet01() {
+        return new AstronomicalObject(
+                AstronomicalObject.AstronomicObjectType.PLANET,
                 "Abstract planet 01",
                 Amount.valueOf(6.371e+07, METER),
                 Amount.valueOf(5.972e+24, KILOGRAM),
@@ -160,9 +160,9 @@ public class AstronomicObjectFactory {
         );
     }
 
-    public static AstronomicObject abstractPlanet02() {
-        return new AstronomicObject(
-                AstronomicObject.AstronomicObjectType.EARTH,
+    public static AstronomicalObject abstractPlanet02() {
+        return new AstronomicalObject(
+                AstronomicalObject.AstronomicObjectType.EARTH,
                 "Abstract planet 02",
                 Amount.valueOf(6.371e+07, METER),
                 Amount.valueOf(5.972e+29, KILOGRAM),
@@ -171,9 +171,32 @@ public class AstronomicObjectFactory {
         );
     }
 
-    public static AstronomicObject earthBiggerVelocity() {
-        return new AstronomicObject(
-                AstronomicObject.AstronomicObjectType.EARTH,
+
+    public static AstronomicalObject abstract3dPlanet01() {
+        return new AstronomicalObject(
+                AstronomicalObject.AstronomicObjectType.PLANET,
+                "Abstract 3d planet 01",
+                Amount.valueOf(6.371e+06, METER),
+                Amount.valueOf(5.972e+24, KILOGRAM),
+                XYZ.valueOf(-1.47095e+11, 0.0, 0.0, METER),
+                VectorMeasure.valueOf(0.0, -3.03e+04, 0.0, METRES_PER_SECOND)
+        );
+    }
+
+    public static AstronomicalObject abstract3dPlanet02() {
+        return new AstronomicalObject(
+                AstronomicalObject.AstronomicObjectType.PLANET,
+                "Abstract 3Z planet 02",
+                Amount.valueOf(6.371e+06, METER),
+                Amount.valueOf(5.972e+24, KILOGRAM),
+                XYZ.valueOf(0.0, 0.0, -1.47095e+11, METER),
+                VectorMeasure.valueOf(0.0, -3.03e+9, 0.0, METRES_PER_SECOND)
+        );
+    }
+
+    public static AstronomicalObject earthBiggerVelocity() {
+        return new AstronomicalObject(
+                AstronomicalObject.AstronomicObjectType.EARTH,
                 "earthBiggerVelocity",
                 Amount.valueOf(ConstantValues.EARTH_RADIUS_VALUE, METER),
                 Amount.valueOf(ConstantValues.EARTH_MASS_VALUE, KILOGRAM),
@@ -182,9 +205,9 @@ public class AstronomicObjectFactory {
         );
     }
 
-    public static AstronomicObject earthWithVelocity(double speed) {
-        return new AstronomicObject(
-                AstronomicObject.AstronomicObjectType.EARTH,
+    public static AstronomicalObject earthWithVelocity(double speed) {
+        return new AstronomicalObject(
+                AstronomicalObject.AstronomicObjectType.EARTH,
                 "Abstract planet 02",
                 Amount.valueOf(ConstantValues.EARTH_RADIUS_VALUE * 10, METER),
                 Amount.valueOf(ConstantValues.EARTH_MASS_VALUE, KILOGRAM),
@@ -198,9 +221,9 @@ public class AstronomicObjectFactory {
      * STARS
      */
 
-    public static AstronomicObject sun() {
-        return new AstronomicObject(
-                AstronomicObject.AstronomicObjectType.SUN,
+    public static AstronomicalObject sun() {
+        return new AstronomicalObject(
+                AstronomicalObject.AstronomicObjectType.SUN,
                 "Sun",
                 Amount.valueOf(ConstantValues.SUN_RADIUS_VALUE, METER),
                 Amount.valueOf(ConstantValues.SUN_MASS_VALUE, KILOGRAM),
@@ -210,9 +233,9 @@ public class AstronomicObjectFactory {
     }
 
 
-    public static AstronomicObject abstractStar01() {
-        return new AstronomicObject(
-                AstronomicObject.AstronomicObjectType.STAR,
+    public static AstronomicalObject abstractStar01() {
+        return new AstronomicalObject(
+                AstronomicalObject.AstronomicObjectType.STAR,
                 "Abstract star 01",
                 Amount.valueOf(6.371e+06, METER),
                 Amount.valueOf(2.0e+30, KILOGRAM),
@@ -224,9 +247,9 @@ public class AstronomicObjectFactory {
      * SATELLITES
      */
 
-    public static AstronomicObject ecMoon() {
-        return new AstronomicObject(
-                AstronomicObject.AstronomicObjectType.MOON,
+    public static AstronomicalObject ecMoon() {
+        return new AstronomicalObject(
+                AstronomicalObject.AstronomicObjectType.MOON,
                 "Moon",
                 Amount.valueOf(ConstantValues.MOON_RADIUS_VALUE, METER),
                 Amount.valueOf(ConstantValues.MOON_MASS_VALUE, KILOGRAM),
@@ -235,9 +258,9 @@ public class AstronomicObjectFactory {
         );
     }
 
-    public static AstronomicObject moon() {
-        return new AstronomicObject(
-                AstronomicObject.AstronomicObjectType.MOON,
+    public static AstronomicalObject moon() {
+        return new AstronomicalObject(
+                AstronomicalObject.AstronomicObjectType.MOON,
                 "Moon",
                 Amount.valueOf(ConstantValues.MOON_RADIUS_VALUE, METER),
                 Amount.valueOf(ConstantValues.MOON_MASS_VALUE, KILOGRAM),
@@ -246,9 +269,9 @@ public class AstronomicObjectFactory {
         );
     }
 
-    public static AstronomicObject biggerMoon() {
-        return new AstronomicObject(
-                AstronomicObject.AstronomicObjectType.MOON,
+    public static AstronomicalObject biggerMoon() {
+        return new AstronomicalObject(
+                AstronomicalObject.AstronomicObjectType.MOON,
                 "Moon",
                 Amount.valueOf(ConstantValues.MOON_RADIUS_VALUE * 10, METER),
                 Amount.valueOf(ConstantValues.MOON_MASS_VALUE, KILOGRAM),
@@ -257,9 +280,9 @@ public class AstronomicObjectFactory {
         );
     }
 
-    public static AstronomicObject moonExperimental() {
-        return new AstronomicObject(
-                AstronomicObject.AstronomicObjectType.MOON,
+    public static AstronomicalObject moonExperimental() {
+        return new AstronomicalObject(
+                AstronomicalObject.AstronomicObjectType.MOON,
                 "Moon",
                 Amount.valueOf(ConstantValues.MOON_RADIUS_VALUE * 100, METER),
                 Amount.valueOf(ConstantValues.MOON_MASS_VALUE, KILOGRAM),
@@ -268,9 +291,9 @@ public class AstronomicObjectFactory {
         );
     }
 
-    public static AstronomicObject moonBiggerVelocity() {
-        return new AstronomicObject(
-                AstronomicObject.AstronomicObjectType.MOON,
+    public static AstronomicalObject moonBiggerVelocity() {
+        return new AstronomicalObject(
+                AstronomicalObject.AstronomicObjectType.MOON,
                 "Moon",
                 Amount.valueOf(ConstantValues.MOON_RADIUS_VALUE * 10, METER),
                 Amount.valueOf(ConstantValues.MOON_MASS_VALUE, KILOGRAM),

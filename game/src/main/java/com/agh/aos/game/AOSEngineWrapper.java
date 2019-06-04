@@ -1,33 +1,33 @@
 package com.agh.aos.game;
 
 import com.agh.aos.game.objects.AstronomicObjectView;
-import com.agh.aos.model.AstronomicObject;
-import com.agh.aos.model.AstronomicObjectSystem;
+import com.agh.aos.model.AstronomicalObject;
+import com.agh.aos.model.AstronomicalObjectSystem;
 import com.agh.aos.util.ConstantValues;
 import com.jme3.renderer.Camera;
 import com.jme3.scene.Node;
 import io.vavr.collection.List;
 
 public class AOSEngineWrapper {
-    private AstronomicObjectSystem astronomicObjectSystem;
+    private AstronomicalObjectSystem astronomicalObjectSystem;
 
     private List<AstronomicObjectView> objectViewList;
 
     public AOSEngineWrapper(List<AstronomicObjectView> objects) {
         this.objectViewList = objects;
-        List<AstronomicObject> astronomicObjectList = objectViewList.map(AstronomicObjectView::getAstronomicObject);
-        this.astronomicObjectSystem = new AstronomicObjectSystem(astronomicObjectList, ConstantValues.GRAVITATIONAL_CONSTANT);
+        List<AstronomicalObject> astronomicObjectList = objectViewList.map(AstronomicObjectView::getAstronomicalObject);
+        this.astronomicalObjectSystem = new AstronomicalObjectSystem(astronomicObjectList, ConstantValues.GRAVITATIONAL_CONSTANT);
     }
 
 
-    public AOSEngineWrapper(AstronomicObjectSystem astronomicObjectSystem, List<AstronomicObjectView> objectViewList) {
+    public AOSEngineWrapper(AstronomicalObjectSystem astronomicalObjectSystem, List<AstronomicObjectView> objectViewList) {
         this.objectViewList = objectViewList;
-        this.astronomicObjectSystem = astronomicObjectSystem;
+        this.astronomicalObjectSystem = astronomicalObjectSystem;
     }
 
 
     public void nextStep(float tpf) {
-        astronomicObjectSystem.nextStep();
+        astronomicalObjectSystem.nextStep();
 //        objectViewList.forEach(x -> x.updateGeometry(tpf));
     }
 
@@ -44,8 +44,8 @@ public class AOSEngineWrapper {
     }
 
 
-    public AstronomicObjectSystem getAstronomicObjectSystem() {
-        return astronomicObjectSystem;
+    public AstronomicalObjectSystem getAstronomicalObjectSystem() {
+        return astronomicalObjectSystem;
     }
 
     public List<AstronomicObjectView> getObjectViewList() {

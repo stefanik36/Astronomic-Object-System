@@ -1,17 +1,16 @@
 package com.agh.aos.game.factory;
 
-import com.agh.aos.factory.AstronomicObjectFactory;
+import com.agh.aos.factory.AstronomicalObjectFactory;
 import com.agh.aos.game.objects.AstronomicObjectView;
 import com.agh.aos.game.objects.Planet;
 import com.agh.aos.game.objects.Star;
-import com.agh.aos.model.AstronomicObject;
-import com.agh.aos.model.AstronomicObjectSystem;
+import com.agh.aos.model.AstronomicalObject;
+import com.agh.aos.model.AstronomicalObjectSystem;
 import com.jme3.asset.AssetManager;
 import com.jme3.material.Material;
 import com.jme3.math.ColorRGBA;
 import com.jme3.scene.Geometry;
 import com.jme3.scene.shape.Sphere;
-import com.jme3.texture.Texture;
 import com.jme3.util.TangentBinormalGenerator;
 import io.vavr.collection.List;
 
@@ -24,7 +23,7 @@ public class AstronomicObjectViewFactory {
 
 
     public static Planet biggerEarth(AssetManager manager) {
-        AstronomicObject obj = AstronomicObjectFactory.biggerEarth();
+        AstronomicalObject obj = AstronomicalObjectFactory.biggerEarth();
         Material m = new Material(manager,
                 "Common/MatDefs/Misc/Unshaded.j3md");
         m.setColor("Color", ColorRGBA.Green);
@@ -37,7 +36,7 @@ public class AstronomicObjectViewFactory {
     }
 
     public static Planet earth(AssetManager manager) {
-        AstronomicObject obj = AstronomicObjectFactory.earth();
+        AstronomicalObject obj = AstronomicalObjectFactory.earth();
         Material m = new Material(manager, "Common/MatDefs/Misc/Unshaded.j3md");
         m.setTexture("NormalMap",
                 manager.loadTexture("Textures/EarthHighRes/2k_earth_daymap.jpg"));
@@ -48,18 +47,18 @@ public class AstronomicObjectViewFactory {
     }
 
     public static Star sun(AssetManager manager) {
-        AstronomicObject obj = AstronomicObjectFactory.sun();
+        AstronomicalObject obj = AstronomicalObjectFactory.sun();
 
         Geometry geometry = createGeometry(obj, manager.loadMaterial("Materials/Sun.j3m"));
         return new Star(geometry, obj);
     }
 
-    public static List<AstronomicObjectView> toView(AstronomicObjectSystem astronomicObjectSystem, AssetManager manager) {
-        List<AstronomicObject.AstronomicObjectType> starMaterialTypes = List.of(AstronomicObject.AstronomicObjectType.SUN, AstronomicObject.AstronomicObjectType.STAR);
-        List<AstronomicObject.AstronomicObjectType> planetMaterialTypes = List.of(AstronomicObject.AstronomicObjectType.EARTH, AstronomicObject.AstronomicObjectType.PLANET);
-        List<AstronomicObject.AstronomicObjectType> satellitesMaterialTypes = List.of(AstronomicObject.AstronomicObjectType.MOON, AstronomicObject.AstronomicObjectType.SATELLITE);
+    public static List<AstronomicObjectView> toView(AstronomicalObjectSystem astronomicalObjectSystem, AssetManager manager) {
+        List<AstronomicalObject.AstronomicObjectType> starMaterialTypes = List.of(AstronomicalObject.AstronomicObjectType.SUN, AstronomicalObject.AstronomicObjectType.STAR);
+        List<AstronomicalObject.AstronomicObjectType> planetMaterialTypes = List.of(AstronomicalObject.AstronomicObjectType.EARTH, AstronomicalObject.AstronomicObjectType.PLANET);
+        List<AstronomicalObject.AstronomicObjectType> satellitesMaterialTypes = List.of(AstronomicalObject.AstronomicObjectType.MOON, AstronomicalObject.AstronomicObjectType.SATELLITE);
 
-        return astronomicObjectSystem.getAstronomicObjectList().map(ao -> {
+        return astronomicalObjectSystem.getAstronomicObjectList().map(ao -> {
             if (starMaterialTypes.contains(ao.getType())) {
                 return toStar(ao, manager);
 //            } else if (planetMaterialTypes.contains(ao.getType())) {
@@ -94,7 +93,7 @@ public class AstronomicObjectViewFactory {
         });
     }
 
-    private static AstronomicObjectView toSatellites(AstronomicObject ao, AssetManager manager) {
+    private static AstronomicObjectView toSatellites(AstronomicalObject ao, AssetManager manager) {
         Material m = new Material(manager, "Common/MatDefs/Misc/Unshaded.j3md");
         m.setColor("Color", ColorRGBA.Red);
         var label = LabelFactory.textWithMarker(ao.getName(), manager);//TODO some material for satellites
@@ -103,44 +102,44 @@ public class AstronomicObjectViewFactory {
         return new Planet(geometry, ao, label);
     }
 
-    private static AstronomicObjectView toPluto(AstronomicObject ao, AssetManager manager) {
+    private static AstronomicObjectView toPluto(AstronomicalObject ao, AssetManager manager) {
         return toPlanet("Textures/pluto_diffuse.jpg", ao, manager);
     }
 
-    private static AstronomicObjectView toUranus(AstronomicObject ao, AssetManager manager) {
+    private static AstronomicObjectView toUranus(AstronomicalObject ao, AssetManager manager) {
         return toPlanet("Textures/uranus_diffuse.jpg", ao, manager);
     }
 
-    private static AstronomicObjectView toNeptun(AstronomicObject ao, AssetManager manager) {
+    private static AstronomicObjectView toNeptun(AstronomicalObject ao, AssetManager manager) {
         return toPlanet("Textures/neptune_diffuse.jpg", ao, manager);
     }
 
-    private static AstronomicObjectView toSaturn(AstronomicObject ao, AssetManager manager) {
+    private static AstronomicObjectView toSaturn(AstronomicalObject ao, AssetManager manager) {
         return toPlanet("Textures/saturn_diffuse.jpg", ao, manager);
     }
 
-    private static AstronomicObjectView toJupiter(AstronomicObject ao, AssetManager manager) {
+    private static AstronomicObjectView toJupiter(AstronomicalObject ao, AssetManager manager) {
         return toPlanet("Textures/jupiter_diffuse.jpg", ao, manager);
     }
 
-    private static AstronomicObjectView toMercury(AstronomicObject ao, AssetManager manager) {
+    private static AstronomicObjectView toMercury(AstronomicalObject ao, AssetManager manager) {
         return toPlanet("Textures/mercury_diffuse.jpg", ao, manager);
     }
 
-    private static AstronomicObjectView toVenus(AstronomicObject ao, AssetManager manager) {
+    private static AstronomicObjectView toVenus(AstronomicalObject ao, AssetManager manager) {
         return toPlanet("Textures/venus_diffuse.jpg", ao, manager);
     }
 
-    private static AstronomicObjectView toMars(AstronomicObject ao, AssetManager manager) {
+    private static AstronomicObjectView toMars(AstronomicalObject ao, AssetManager manager) {
         return toPlanet("Textures/mars_diffuse.jpg", ao, manager);
     }
 
 
-    private static AstronomicObjectView toEarth(AstronomicObject ao, AssetManager manager) {
+    private static AstronomicObjectView toEarth(AstronomicalObject ao, AssetManager manager) {
         return toPlanet("Textures/EarthHighRes/2k_earth_daymap.jpg", ao, manager);
     }
 
-    private static AstronomicObjectView toPlanet(String texture, AstronomicObject ao, AssetManager manager) {
+    private static AstronomicObjectView toPlanet(String texture, AstronomicalObject ao, AssetManager manager) {
         Material m = new Material(manager, "Common/MatDefs/Misc/Unshaded.j3md");
         m.setTexture("ColorMap",
                 manager.loadTexture(texture));
@@ -149,7 +148,7 @@ public class AstronomicObjectViewFactory {
         return new Planet(geometry, ao, label);
     }
 
-    private static AstronomicObjectView toOther(AstronomicObject ao, AssetManager manager) {
+    private static AstronomicObjectView toOther(AstronomicalObject ao, AssetManager manager) {
         Material m = new Material(manager, "Common/MatDefs/Misc/Unshaded.j3md");
         m.setColor("Color", ColorRGBA.randomColor());
         var label = LabelFactory.textWithMarker(ao.getName(), manager);//TODO some material for other
@@ -158,7 +157,7 @@ public class AstronomicObjectViewFactory {
         return new Planet(geometry, ao, label);
     }
 
-    private static AstronomicObjectView toStar(AstronomicObject ao, AssetManager manager) {
+    private static AstronomicObjectView toStar(AstronomicalObject ao, AssetManager manager) {
         Geometry geometry = createGeometry(ao, manager.loadMaterial("Materials/Sun.j3m"));
 
         var label = LabelFactory.textWithMarker(ao.getName(), manager);
@@ -166,7 +165,7 @@ public class AstronomicObjectViewFactory {
     }
 
 
-    private static Geometry createGeometry(AstronomicObject obj, Material material) {
+    private static Geometry createGeometry(AstronomicalObject obj, Material material) {
         Sphere s = new Sphere(128, 128, (float) obj.getRadius().doubleValue(SI.METER) * RADIUS_SCALE);
         TangentBinormalGenerator.generate(s);
         s.setTextureMode(Sphere.TextureMode.Projected);

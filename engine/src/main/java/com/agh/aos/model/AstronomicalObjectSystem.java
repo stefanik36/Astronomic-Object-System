@@ -4,18 +4,15 @@ package com.agh.aos.model;
 import io.vavr.collection.List;
 import org.jscience.physics.amount.Amount;
 
-import javax.measure.quantity.Mass;
-import javax.measure.quantity.Quantity;
-
 import static javax.measure.unit.SI.METER;
 
-public class AstronomicObjectSystem {
-    private List<AstronomicObject> astronomicObjectList;
+public class AstronomicalObjectSystem {
+    private List<AstronomicalObject> astronomicObjectList;
     private Amount<?> gravitationalConstant;
     private long epoch;
     private double stepSize;
 
-    public AstronomicObjectSystem(List<AstronomicObject> astronomicObjectList, Amount<?> gravitationalConstant) {
+    public AstronomicalObjectSystem(List<AstronomicalObject> astronomicObjectList, Amount<?> gravitationalConstant) {
         this.astronomicObjectList = astronomicObjectList;
         this.gravitationalConstant = gravitationalConstant;
         this.epoch = 0;
@@ -32,11 +29,11 @@ public class AstronomicObjectSystem {
         System.out.println(posString);
     }
 
-    public List<AstronomicObject> getAstronomicObjectList() {
+    public List<AstronomicalObject> getAstronomicObjectList() {
         return astronomicObjectList;
     }
 
-    public void setAstronomicObjectList(List<AstronomicObject> astronomicObjectList) {
+    public void setAstronomicObjectList(List<AstronomicalObject> astronomicObjectList) {
         this.astronomicObjectList = astronomicObjectList;
     }
 
@@ -58,14 +55,14 @@ public class AstronomicObjectSystem {
                 }
         );
         epoch++;
-//        this.printPositions();
+        this.printPositions();
     }
 
     public double getStepSize() {
         return stepSize;
     }
 
-    public AstronomicObjectSystem setStepSize(double stepSize) {
+    public AstronomicalObjectSystem setStepSize(double stepSize) {
         this.stepSize = stepSize;
         astronomicObjectList.forEach(ao -> ao.setStepSize(this.stepSize));
         return this;

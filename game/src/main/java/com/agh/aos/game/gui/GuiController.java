@@ -43,7 +43,7 @@ public class GuiController implements Initializable {
 
 
     public void initializeObjButton(Camera cam, AstronomicObjectView view) {
-        var btn = new ToggleButton(view.getAstronomicObject().getName());
+        var btn = new ToggleButton(view.getAstronomicalObject().getName());
         btn.setOnAction(event -> {
             if (btn.isSelected()) {
                 planetsManager.getChildren().stream()

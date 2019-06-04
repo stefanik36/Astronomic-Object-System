@@ -1,10 +1,10 @@
 package com.agh.aos.game;
 
-import com.agh.aos.factory.AstronomicObjectSystemFactory;
+import com.agh.aos.factory.AstronomicalObjectSystemFactory;
 import com.agh.aos.game.factory.AstronomicObjectViewFactory;
 import com.agh.aos.game.gui.GuiController;
 import com.agh.aos.game.objects.AstronomicObjectView;
-import com.agh.aos.model.AstronomicObjectSystem;
+import com.agh.aos.model.AstronomicalObjectSystem;
 import com.jayfella.jme.jfx.JavaFxUI;
 import com.jme3.app.SimpleApplication;
 import com.jme3.font.BitmapText;
@@ -13,7 +13,6 @@ import com.jme3.input.controls.ActionListener;
 import com.jme3.input.controls.KeyTrigger;
 import com.jme3.math.ColorRGBA;
 import com.jme3.math.Vector3f;
-import com.jme3.renderer.RenderManager;
 import com.jme3.scene.Node;
 import com.jme3.system.AppSettings;
 import com.jme3.texture.Texture;
@@ -89,25 +88,26 @@ public class Main extends SimpleApplication {
              * when 60 frames per second: 60 sec * 1.0e+05 = 600 000 sec ~ 6.9444444 real days is 1 second of simulation for appSpeed = 1.0e+05
              */
             double appSpeed = 1.0e+05;
-//        this.gravityEngine = getEngine(AstronomicObjectSystemFactory.sunEarth().setStepSize(appSpeed));
-//        this.gravityEngine = getEngine(AstronomicObjectSystemFactory.sunMercuryEarth().setStepSize(appSpeed));
-//        this.gravityEngine = getEngine(AstronomicObjectSystemFactory.sunMercuryVenusEarth().setStepSize(appSpeed));
-//        this.gravityEngine = getEngine(AstronomicObjectSystemFactory.sunMercuryVenusEarthMars().setStepSize(appSpeed));
-//        this.gravityEngine = getEngine(AstronomicObjectSystemFactory.sunMercuryVenusEarthMarsJupiter().setStepSize(appSpeed));
-//        this.gravityEngine = getEngine(AstronomicObjectSystemFactory.sunMercuryVenusEarthMarsJupiterSaturn().setStepSize(appSpeed));
-            gravityEngine = getEngine(AstronomicObjectSystemFactory.solarSystem().setStepSize(appSpeed));
+//        this.gravityEngine = getEngine(AstronomicalObjectSystemFactory.sunEarth().setStepSize(appSpeed));
+//        this.gravityEngine = getEngine(AstronomicalObjectSystemFactory.sunMercuryEarth().setStepSize(appSpeed));
+//        this.gravityEngine = getEngine(AstronomicalObjectSystemFactory.sunMercuryVenusEarth().setStepSize(appSpeed));
+//        this.gravityEngine = getEngine(AstronomicalObjectSystemFactory.sunMercuryVenusEarthMars().setStepSize(appSpeed));
+//        this.gravityEngine = getEngine(AstronomicalObjectSystemFactory.sunMercuryVenusEarthMarsJupiter().setStepSize(appSpeed));
+//        this.gravityEngine = getEngine(AstronomicalObjectSystemFactory.sunMercuryVenusEarthMarsJupiterSaturn().setStepSize(appSpeed));
+//            gravityEngine = getEngine(AstronomicalObjectSystemFactory.solarSystem().setStepSize(appSpeed));
+            gravityEngine = getEngine(AstronomicalObjectSystemFactory.system3d().setStepSize(appSpeed));
 
 
-//        this.gravityEngine = getEngine(AstronomicObjectSystemFactory.earthMoon().setStepSize(1.0));
-//        this.gravityEngine = getEngine(AstronomicObjectSystemFactory.cEarthEcMoon().setStepSize(appSpeed));
-//        this.gravityEngine = getEngine(AstronomicObjectSystemFactory.sunEarthMoon().setStepSize(10));
-//        this.gravityEngine = getEngine(AstronomicObjectSystemFactory.biggerEarthAndSun());
-//        this.gravityEngine = getEngine(AstronomicObjectSystemFactory.sunBiggerEarthBiggerMoon());
-//        this.gravityEngine = getEngine(AstronomicObjectSystemFactory.earthSunWithSpeed(13.0));
-//        this.gravityEngine = getEngine(AstronomicObjectSystemFactory.abstractPlanet01AbstractPlane02Sun());
-//        this.gravityEngine = getEngine(AstronomicObjectSystemFactory.sunEarthBiggerVelocityMoonBiggerVelocity());
-//        this.gravityEngine = getEngine(AstronomicObjectSystemFactory.earthBiggerVelocitySun_AroundSun());
-//        this.gravityEngine = getEngine(AstronomicObjectSystemFactory.earthInCenterMoon());
+//        this.gravityEngine = getEngine(AstronomicalObjectSystemFactory.earthMoon().setStepSize(1.0));
+//        this.gravityEngine = getEngine(AstronomicalObjectSystemFactory.cEarthEcMoon().setStepSize(appSpeed));
+//        this.gravityEngine = getEngine(AstronomicalObjectSystemFactory.sunEarthMoon().setStepSize(10));
+//        this.gravityEngine = getEngine(AstronomicalObjectSystemFactory.biggerEarthAndSun());
+//        this.gravityEngine = getEngine(AstronomicalObjectSystemFactory.sunBiggerEarthBiggerMoon());
+//        this.gravityEngine = getEngine(AstronomicalObjectSystemFactory.earthSunWithSpeed(13.0));
+//        this.gravityEngine = getEngine(AstronomicalObjectSystemFactory.abstractPlanet01AbstractPlane02Sun());
+//        this.gravityEngine = getEngine(AstronomicalObjectSystemFactory.sunEarthBiggerVelocityMoonBiggerVelocity());
+//        this.gravityEngine = getEngine(AstronomicalObjectSystemFactory.earthBiggerVelocitySun_AroundSun());
+//        this.gravityEngine = getEngine(AstronomicalObjectSystemFactory.earthInCenterMoon());
 //        this.gravityEngine = getEngine();
             gravityEngine.attachToNode(guiNode, envNode);
 
@@ -119,9 +119,9 @@ public class Main extends SimpleApplication {
     }
 
 
-    private AOSEngineWrapper getEngine(AstronomicObjectSystem astronomicObjectSystem) {
-        List<AstronomicObjectView> astronomicObjects = AstronomicObjectViewFactory.toView(astronomicObjectSystem, this.assetManager);
-        return new AOSEngineWrapper(astronomicObjectSystem, astronomicObjects);
+    private AOSEngineWrapper getEngine(AstronomicalObjectSystem astronomicalObjectSystem) {
+        List<AstronomicObjectView> astronomicObjects = AstronomicObjectViewFactory.toView(astronomicalObjectSystem, this.assetManager);
+        return new AOSEngineWrapper(astronomicalObjectSystem, astronomicObjects);
     }
 
 
@@ -216,10 +216,10 @@ public class Main extends SimpleApplication {
     }
 
     public double getAppSpeed() {
-        return gravityEngine.getAstronomicObjectSystem().getStepSize();
+        return gravityEngine.getAstronomicalObjectSystem().getStepSize();
     }
 
     public void setAppSpeed(double appSpeed) {
-        gravityEngine.getAstronomicObjectSystem().setStepSize(1.0 * Math.pow(10, appSpeed));
+        gravityEngine.getAstronomicalObjectSystem().setStepSize(1.0 * Math.pow(10, appSpeed));
     }
 }

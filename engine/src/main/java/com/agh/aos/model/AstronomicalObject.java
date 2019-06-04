@@ -13,7 +13,7 @@ import javax.measure.quantity.*;
 import static javax.measure.unit.SI.*;
 
 
-public class AstronomicObject {
+public class AstronomicalObject {
     /**
      * MARS, SATURN etc. types for view (GUI)
      */
@@ -36,7 +36,7 @@ public class AstronomicObject {
 
     private double stepSize;
 
-    public AstronomicObject(AstronomicObjectType type, String name, Amount<Length> radius, Amount<Mass> mass, XYZ position, VectorMeasure<Velocity> velocity) {
+    public AstronomicalObject(AstronomicObjectType type, String name, Amount<Length> radius, Amount<Mass> mass, XYZ position, VectorMeasure<Velocity> velocity) {
         this.type = type;
         this.name = name;
         this.radius = radius;
@@ -47,10 +47,10 @@ public class AstronomicObject {
         this.acceleration = VectorMeasure.valueOf(0.0, 0.0, 0.0, METERS_PER_SQUARE_SECOND);
     }
 
-    public VectorMeasure<Acceleration> computeAccelerationSum(AstronomicObjectSystem astronomicObjectSystem) {
-        Float64Vector f64acceleration = astronomicObjectSystem.getAstronomicObjectList()
+    public VectorMeasure<Acceleration> computeAccelerationSum(AstronomicalObjectSystem astronomicalObjectSystem) {
+        Float64Vector f64acceleration = astronomicalObjectSystem.getAstronomicObjectList()
                 .filter(ao -> !ao.equals(this))
-                .map(ao -> computeAcceleration(this, ao, astronomicObjectSystem.getGravitationalConstant()))
+                .map(ao -> computeAcceleration(this, ao, astronomicalObjectSystem.getGravitationalConstant()))
                 .foldLeft(
                         Float64Vector
                                 .valueOf(VectorMeasure.valueOf(0.0, 0.0, 0.0, METERS_PER_SQUARE_SECOND)
@@ -67,7 +67,7 @@ public class AstronomicObject {
         return this.acceleration;
     }
 
-    public VectorMeasure<Acceleration> computeAcceleration(AstronomicObject off, AstronomicObject by, Amount<?> gravitationalConstant) {
+    public VectorMeasure<Acceleration> computeAcceleration(AstronomicalObject off, AstronomicalObject by, Amount<?> gravitationalConstant) {
 
 
         Float64Vector deltaPosition = by.getPosition().toVector(METER).minus(off.getPosition().toVector(METER));

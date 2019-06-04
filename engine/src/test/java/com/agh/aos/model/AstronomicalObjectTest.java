@@ -1,6 +1,5 @@
 package com.agh.aos.model;
 
-import com.agh.aos.model.AstronomicObject;
 import com.agh.aos.util.ConstantValues;
 import io.vavr.collection.List;
 import org.jscience.geography.coordinates.XYZ;
@@ -16,12 +15,12 @@ import java.util.Arrays;
 import static javax.measure.unit.SI.*;
 import static junit.framework.TestCase.assertEquals;
 
-public class AstronomicObjectTest {
+public class AstronomicalObjectTest {
 
     @Test
     public void construct() {
-        AstronomicObject astronomicObject = new AstronomicObject(
-                AstronomicObject.AstronomicObjectType.EARTH,
+        AstronomicalObject astronomicalObject = new AstronomicalObject(
+                AstronomicalObject.AstronomicObjectType.EARTH,
                 "Earth",
                 Amount.valueOf(100.0, METER),
                 Amount.valueOf(100.0, KILOGRAM),
@@ -29,15 +28,15 @@ public class AstronomicObjectTest {
                 VectorMeasure.valueOf(1.0, 2.0, 3.0, METRES_PER_SECOND)
         );
 
-        assertEquals(2.0, astronomicObject.getPosition().xValue(METER),0.0001);
-        assertEquals(1.0, astronomicObject.getPosition().yValue(METER),0.0001);
-        assertEquals(0.0, astronomicObject.getPosition().zValue(METER),0.0001);
+        assertEquals(2.0, astronomicalObject.getPosition().xValue(METER),0.0001);
+        assertEquals(1.0, astronomicalObject.getPosition().yValue(METER),0.0001);
+        assertEquals(0.0, astronomicalObject.getPosition().zValue(METER),0.0001);
     }
 
     @Test
     public void move() {
-        AstronomicObject astronomicObject = new AstronomicObject(
-                AstronomicObject.AstronomicObjectType.EARTH,
+        AstronomicalObject astronomicalObject = new AstronomicalObject(
+                AstronomicalObject.AstronomicObjectType.EARTH,
                 "Earth",
                 Amount.valueOf(100.0, METER),
                 Amount.valueOf(100.0, KILOGRAM),
@@ -45,10 +44,10 @@ public class AstronomicObjectTest {
                 VectorMeasure.valueOf(1.0, -2.0, 3.0, METRES_PER_SECOND)
         );
 
-        astronomicObject.move();
-        assertEquals(3.0, astronomicObject.getPosition().xValue(METER),0.0001);
-        assertEquals(-1.0, astronomicObject.getPosition().yValue(METER),0.0001);
-        assertEquals(3.0, astronomicObject.getPosition().zValue(METER),0.0001);
+        astronomicalObject.move();
+        assertEquals(3.0, astronomicalObject.getPosition().xValue(METER),0.0001);
+        assertEquals(-1.0, astronomicalObject.getPosition().yValue(METER),0.0001);
+        assertEquals(3.0, astronomicalObject.getPosition().zValue(METER),0.0001);
     }
 
 
@@ -56,16 +55,16 @@ public class AstronomicObjectTest {
     @Test
     public void computeAcceleration() {
 
-        AstronomicObject earth = new AstronomicObject(
-                AstronomicObject.AstronomicObjectType.EARTH,
+        AstronomicalObject earth = new AstronomicalObject(
+                AstronomicalObject.AstronomicObjectType.EARTH,
                 "Earth",
                 Amount.valueOf(0.0, METER),
                 Amount.valueOf(0.0, KILOGRAM),
                 XYZ.valueOf(4.0, 0.0, 0.0, METER),
                 VectorMeasure.valueOf(0.0, 0.0, 0.0, METRES_PER_SECOND)
         );
-        AstronomicObject sun = new AstronomicObject(
-                AstronomicObject.AstronomicObjectType.SUN,
+        AstronomicalObject sun = new AstronomicalObject(
+                AstronomicalObject.AstronomicObjectType.SUN,
                 "Sun",
                 Amount.valueOf(0.0, METER),
                 Amount.valueOf(9.0, KILOGRAM),
@@ -90,16 +89,16 @@ public class AstronomicObjectTest {
     @Test
     public void computeAccelerationSum() {
 
-        AstronomicObject moved = new AstronomicObject(
-                AstronomicObject.AstronomicObjectType.PLANET,
+        AstronomicalObject moved = new AstronomicalObject(
+                AstronomicalObject.AstronomicObjectType.PLANET,
                 "moved",
                 Amount.valueOf(0.0, METER),
                 Amount.valueOf(0.0, KILOGRAM),
                 XYZ.valueOf(4.0, 0.0, 0.0, METER),
                 VectorMeasure.valueOf(0.0, 0.0, 0.0, METRES_PER_SECOND)
         );
-        AstronomicObject moving01 = new AstronomicObject(
-                AstronomicObject.AstronomicObjectType.PLANET,
+        AstronomicalObject moving01 = new AstronomicalObject(
+                AstronomicalObject.AstronomicObjectType.PLANET,
                 "moving01",
                 Amount.valueOf(0.0, METER),
                 Amount.valueOf(9.0, KILOGRAM),
@@ -107,8 +106,8 @@ public class AstronomicObjectTest {
                 VectorMeasure.valueOf(0.0, 0.0, 0.0, METRES_PER_SECOND)
         );
 
-        AstronomicObject moving02 = new AstronomicObject(
-                AstronomicObject.AstronomicObjectType.PLANET,
+        AstronomicalObject moving02 = new AstronomicalObject(
+                AstronomicalObject.AstronomicObjectType.PLANET,
                 "moving02",
                 Amount.valueOf(0.0, METER),
                 Amount.valueOf(2.10022, KILOGRAM),
@@ -117,14 +116,14 @@ public class AstronomicObjectTest {
         );
 
 
-        AstronomicObjectSystem astronomicObjectSystem = new AstronomicObjectSystem(
+        AstronomicalObjectSystem astronomicalObjectSystem = new AstronomicalObjectSystem(
                 List.of(moved, moving01, moving02),
                 Amount.valueOf(25.0, CUBIC_METRE.divide(KILOGRAM).divide(SECOND).divide(SECOND))
         );
-        astronomicObjectSystem.printPositions();
+        astronomicalObjectSystem.printPositions();
 
 
-        VectorMeasure<Acceleration> result = moved.computeAccelerationSum(astronomicObjectSystem);
+        VectorMeasure<Acceleration> result = moved.computeAccelerationSum(astronomicalObjectSystem);
 
 
         System.out.println(Arrays.toString(result.getValue()));
@@ -137,8 +136,8 @@ public class AstronomicObjectTest {
     @Test
     public void updateVelocity() {
 
-        AstronomicObject earth = new AstronomicObject(
-                AstronomicObject.AstronomicObjectType.EARTH,
+        AstronomicalObject earth = new AstronomicalObject(
+                AstronomicalObject.AstronomicObjectType.EARTH,
                 "Earth",
                 Amount.valueOf(ConstantValues.EARTH_RADIUS_VALUE, METER),
                 Amount.valueOf(ConstantValues.EARTH_MASS_VALUE, KILOGRAM),
