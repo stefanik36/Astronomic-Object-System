@@ -1,1 +1,1 @@
-# Astronomic-Object-System
+# Astronomical-Object-System
