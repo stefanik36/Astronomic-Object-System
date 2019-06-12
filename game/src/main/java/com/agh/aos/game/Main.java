@@ -94,8 +94,8 @@ public class Main extends SimpleApplication {
 //        this.gravityEngine = getEngine(AstronomicalObjectSystemFactory.sunMercuryVenusEarthMars().setStepSize(appSpeed));
 //        this.gravityEngine = getEngine(AstronomicalObjectSystemFactory.sunMercuryVenusEarthMarsJupiter().setStepSize(appSpeed));
 //        this.gravityEngine = getEngine(AstronomicalObjectSystemFactory.sunMercuryVenusEarthMarsJupiterSaturn().setStepSize(appSpeed));
-//            gravityEngine = getEngine(AstronomicalObjectSystemFactory.solarSystem().setStepSize(appSpeed));
-            gravityEngine = getEngine(AstronomicalObjectSystemFactory.system3d().setStepSize(appSpeed));
+            this.gravityEngine = getEngine(AstronomicalObjectSystemFactory.solarSystem().setStepSize(appSpeed));
+//            gravityEngine = getEngine(AstronomicalObjectSystemFactory.system3d().setStepSize(appSpeed));
 
 
 //        this.gravityEngine = getEngine(AstronomicalObjectSystemFactory.earthMoon().setStepSize(1.0));
