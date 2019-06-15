@@ -1,0 +1,499 @@
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (mmap) failed to map 175112192 bytes for committing reserved memory.
+# Possible reasons:
+#   The system is out of physical RAM or swap space
+#   The process is running with CompressedOops enabled, and the Java Heap may be blocking the growth of the native heap
+# Possible solutions:
+#   Reduce memory load on the system
+#   Increase physical memory or swap space
+#   Check if swap backing store is full
+#   Decrease Java heap size (-Xmx/-Xms)
+#   Decrease number of Java threads
+#   Decrease Java thread stack sizes (-Xss)
+#   Set larger code cache with -XX:ReservedCodeCacheSize=
+# This output file may be truncated or incomplete.
+#
+#  Out of Memory Error (os_linux.cpp:2753), pid=32559, tid=0x00007f9180be0700
+#
+# JRE version:  (8.0_202-b39) (build )
+# Java VM: OpenJDK 64-Bit Server VM (25.202-b39 mixed mode linux-amd64 compressed oops)
+# Failed to write core dump. Core dumps have been disabled. To enable core dumping, try "ulimit -c unlimited" before starting Java again
+#
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x00007f917800b800):  JavaThread "Unknown thread" [_thread_in_vm, id=32560, stack(0x00007f9180ae1000,0x00007f9180be1000)]
+
+Stack: [0x00007f9180ae1000,0x00007f9180be1000],  sp=0x00007f9180bdf3e0,  free space=1016k
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+V  [libjvm.so+0xa4458e]  VMError::report_and_die()+0x14e
+V  [libjvm.so+0x4dfff9]  report_vm_out_of_memory(char const*, int, unsigned long, VMErrorType, char const*)+0x99
+V  [libjvm.so+0x8b4313]  os::Linux::commit_memory_impl(char*, unsigned long, bool)+0x113
+V  [libjvm.so+0x8b4539]  os::pd_commit_memory(char*, unsigned long, unsigned long, bool)+0x29
+V  [libjvm.so+0x8a95ca]  os::commit_memory(char*, unsigned long, unsigned long, bool)+0x2a
+V  [libjvm.so+0x91906b]  PSVirtualSpace::expand_by(unsigned long)+0x6b
+V  [libjvm.so+0x909659]  PSOldGen::initialize(ReservedSpace, unsigned long, char const*, int)+0xc9
+V  [libjvm.so+0x2d224e]  AdjoiningGenerations::AdjoiningGenerations(ReservedSpace, GenerationSizer*, unsigned long)+0x38e
+V  [libjvm.so+0x8d1197]  ParallelScavengeHeap::initialize()+0x1e7
+V  [libjvm.so+0xa0efd1]  Universe::initialize_heap()+0x101
+V  [libjvm.so+0xa10083]  universe_init()+0x33
+V  [libjvm.so+0x60d435]  init_globals()+0x55
+V  [libjvm.so+0x9f4aa7]  Threads::create_vm(JavaVMInitArgs*, bool*)+0x207
+V  [libjvm.so+0x6723c4]  JNI_CreateJavaVM+0x74
+C  [libjli.so+0x75f7]  JavaMain+0x87
+C  [libpthread.so.0+0x76db]  start_thread+0xdb
+
+
+---------------  P R O C E S S  ---------------
+
+Java Threads: ( => current thread )
+
+Other Threads:
+
+=>0x00007f917800b800 (exited) JavaThread "Unknown thread" [_thread_in_vm, id=32560, stack(0x00007f9180ae1000,0x00007f9180be1000)]
+
+VM state:not at safepoint (not fully initialized)
+
+VM Mutex/Monitor currently owned by a thread: None
+
+heap address: 0x00000006c6800000, size: 3992 MB, Compressed Oops mode: Non-zero based:0x00000006c67ff000, Oop shift amount: 3
+Narrow klass base: 0x0000000000000000, Narrow klass shift: 0
+
+GC Heap History (0 events):
+No events
+
+Deoptimization events (0 events):
+No events
+
+Classes redefined (0 events):
+No events
+
+Internal exceptions (0 events):
+No events
+
+Events (0 events):
+No events
+
+
+Dynamic libraries:
+00400000-00401000 r-xp 00000000 08:12 8263907                            /home/prw/.local/share/JetBrains/Toolbox/apps/IDEA-U/ch-0/191.6183.87/jre64/bin/java
+00600000-00601000 rw-p 00000000 08:12 8263907                            /home/prw/.local/share/JetBrains/Toolbox/apps/IDEA-U/ch-0/191.6183.87/jre64/bin/java
+011d3000-011f4000 rw-p 00000000 00:00 0                                  [heap]
+6d0f00000-76cd80000 ---p 00000000 00:00 0 
+76cd80000-772080000 rw-p 00000000 00:00 0 
+772080000-7c0000000 ---p 00000000 00:00 0 
+7f9169000000-7f9169270000 rwxp 00000000 00:00 0 
+7f9169270000-7f9178000000 ---p 00000000 00:00 0 
+7f9178000000-7f9178036000 rw-p 00000000 00:00 0 
+7f9178036000-7f917c000000 ---p 00000000 00:00 0 
+7f917ce12000-7f917d08e000 rw-p 00000000 00:00 0 
+7f917d08e000-7f917d5c0000 ---p 00000000 00:00 0 
+7f917d5c0000-7f917d5eb000 rw-p 00000000 00:00 0 
+7f917d5eb000-7f917d85a000 ---p 00000000 00:00 0 
+7f917d85a000-7f917d865000 rw-p 00000000 00:00 0 
+7f917d865000-7f917dc1b000 ---p 00000000 00:00 0 
+7f917dc1b000-7f917dc36000 r-xp 00000000 08:12 8142030                    /home/prw/.local/share/JetBrains/Toolbox/apps/IDEA-U/ch-0/191.6183.87/jre64/lib/amd64/libzip.so
+7f917dc36000-7f917de35000 ---p 0001b000 08:12 8142030                    /home/prw/.local/share/JetBrains/Toolbox/apps/IDEA-U/ch-0/191.6183.87/jre64/lib/amd64/libzip.so
+7f917de35000-7f917de36000 rw-p 0001a000 08:12 8142030                    /home/prw/.local/share/JetBrains/Toolbox/apps/IDEA-U/ch-0/191.6183.87/jre64/lib/amd64/libzip.so
+7f917de36000-7f917de41000 r-xp 00000000 08:12 3937083                    /lib/x86_64-linux-gnu/libnss_files-2.27.so
+7f917de41000-7f917e040000 ---p 0000b000 08:12 3937083                    /lib/x86_64-linux-gnu/libnss_files-2.27.so
+7f917e040000-7f917e041000 r--p 0000a000 08:12 3937083                    /lib/x86_64-linux-gnu/libnss_files-2.27.so
+7f917e041000-7f917e042000 rw-p 0000b000 08:12 3937083                    /lib/x86_64-linux-gnu/libnss_files-2.27.so
+7f917e042000-7f917e048000 rw-p 00000000 00:00 0 
+7f917e048000-7f917e05f000 r-xp 00000000 08:12 3937077                    /lib/x86_64-linux-gnu/libnsl-2.27.so
+7f917e05f000-7f917e25e000 ---p 00017000 08:12 3937077                    /lib/x86_64-linux-gnu/libnsl-2.27.so
+7f917e25e000-7f917e25f000 r--p 00016000 08:12 3937077                    /lib/x86_64-linux-gnu/libnsl-2.27.so
+7f917e25f000-7f917e260000 rw-p 00017000 08:12 3937077                    /lib/x86_64-linux-gnu/libnsl-2.27.so
+7f917e260000-7f917e262000 rw-p 00000000 00:00 0 
+7f917e262000-7f917e26d000 r-xp 00000000 08:12 3937094                    /lib/x86_64-linux-gnu/libnss_nis-2.27.so
+7f917e26d000-7f917e46c000 ---p 0000b000 08:12 3937094                    /lib/x86_64-linux-gnu/libnss_nis-2.27.so
+7f917e46c000-7f917e46d000 r--p 0000a000 08:12 3937094                    /lib/x86_64-linux-gnu/libnss_nis-2.27.so
+7f917e46d000-7f917e46e000 rw-p 0000b000 08:12 3937094                    /lib/x86_64-linux-gnu/libnss_nis-2.27.so
+7f917e46e000-7f917e476000 r-xp 00000000 08:12 3937079                    /lib/x86_64-linux-gnu/libnss_compat-2.27.so
+7f917e476000-7f917e676000 ---p 00008000 08:12 3937079                    /lib/x86_64-linux-gnu/libnss_compat-2.27.so
+7f917e676000-7f917e677000 r--p 00008000 08:12 3937079                    /lib/x86_64-linux-gnu/libnss_compat-2.27.so
+7f917e677000-7f917e678000 rw-p 00009000 08:12 3937079                    /lib/x86_64-linux-gnu/libnss_compat-2.27.so
+7f917e678000-7f917e6a2000 r-xp 00000000 08:12 8141949                    /home/prw/.local/share/JetBrains/Toolbox/apps/IDEA-U/ch-0/191.6183.87/jre64/lib/amd64/libjava.so
+7f917e6a2000-7f917e8a1000 ---p 0002a000 08:12 8141949                    /home/prw/.local/share/JetBrains/Toolbox/apps/IDEA-U/ch-0/191.6183.87/jre64/lib/amd64/libjava.so
+7f917e8a1000-7f917e8a3000 rw-p 00029000 08:12 8141949                    /home/prw/.local/share/JetBrains/Toolbox/apps/IDEA-U/ch-0/191.6183.87/jre64/lib/amd64/libjava.so
+7f917e8a3000-7f917e8b2000 r-xp 00000000 08:12 8142029                    /home/prw/.local/share/JetBrains/Toolbox/apps/IDEA-U/ch-0/191.6183.87/jre64/lib/amd64/libverify.so
+7f917e8b2000-7f917eab1000 ---p 0000f000 08:12 8142029                    /home/prw/.local/share/JetBrains/Toolbox/apps/IDEA-U/ch-0/191.6183.87/jre64/lib/amd64/libverify.so
+7f917eab1000-7f917eab3000 rw-p 0000e000 08:12 8142029                    /home/prw/.local/share/JetBrains/Toolbox/apps/IDEA-U/ch-0/191.6183.87/jre64/lib/amd64/libverify.so
+7f917eab3000-7f917eaba000 r-xp 00000000 08:12 3937134                    /lib/x86_64-linux-gnu/librt-2.27.so
+7f917eaba000-7f917ecb9000 ---p 00007000 08:12 3937134                    /lib/x86_64-linux-gnu/librt-2.27.so
+7f917ecb9000-7f917ecba000 r--p 00006000 08:12 3937134                    /lib/x86_64-linux-gnu/librt-2.27.so
+7f917ecba000-7f917ecbb000 rw-p 00007000 08:12 3937134                    /lib/x86_64-linux-gnu/librt-2.27.so
+7f917ecbb000-7f917ee58000 r-xp 00000000 08:12 3937056                    /lib/x86_64-linux-gnu/libm-2.27.so
+7f917ee58000-7f917f057000 ---p 0019d000 08:12 3937056                    /lib/x86_64-linux-gnu/libm-2.27.so
+7f917f057000-7f917f058000 r--p 0019c000 08:12 3937056                    /lib/x86_64-linux-gnu/libm-2.27.so
+7f917f058000-7f917f059000 rw-p 0019d000 08:12 3937056                    /lib/x86_64-linux-gnu/libm-2.27.so
+7f917f059000-7f917fca8000 r-xp 00000000 08:12 8142034                    /home/prw/.local/share/JetBrains/Toolbox/apps/IDEA-U/ch-0/191.6183.87/jre64/lib/amd64/server/libjvm.so
+7f917fca8000-7f917fea8000 ---p 00c4f000 08:12 8142034                    /home/prw/.local/share/JetBrains/Toolbox/apps/IDEA-U/ch-0/191.6183.87/jre64/lib/amd64/server/libjvm.so
+7f917fea8000-7f917ff78000 rw-p 00c4f000 08:12 8142034                    /home/prw/.local/share/JetBrains/Toolbox/apps/IDEA-U/ch-0/191.6183.87/jre64/lib/amd64/server/libjvm.so
+7f917ff78000-7f917ffba000 rw-p 00000000 00:00 0 
+7f917ffba000-7f91801a1000 r-xp 00000000 08:12 3936993                    /lib/x86_64-linux-gnu/libc-2.27.so
+7f91801a1000-7f91803a1000 ---p 001e7000 08:12 3936993                    /lib/x86_64-linux-gnu/libc-2.27.so
+7f91803a1000-7f91803a5000 r--p 001e7000 08:12 3936993                    /lib/x86_64-linux-gnu/libc-2.27.so
+7f91803a5000-7f91803a7000 rw-p 001eb000 08:12 3936993                    /lib/x86_64-linux-gnu/libc-2.27.so
+7f91803a7000-7f91803ab000 rw-p 00000000 00:00 0 
+7f91803ab000-7f91803ae000 r-xp 00000000 08:12 3937016                    /lib/x86_64-linux-gnu/libdl-2.27.so
+7f91803ae000-7f91805ad000 ---p 00003000 08:12 3937016                    /lib/x86_64-linux-gnu/libdl-2.27.so
+7f91805ad000-7f91805ae000 r--p 00002000 08:12 3937016                    /lib/x86_64-linux-gnu/libdl-2.27.so
+7f91805ae000-7f91805af000 rw-p 00003000 08:12 3937016                    /lib/x86_64-linux-gnu/libdl-2.27.so
+7f91805af000-7f91805c4000 r-xp 00000000 08:12 8141926                    /home/prw/.local/share/JetBrains/Toolbox/apps/IDEA-U/ch-0/191.6183.87/jre64/lib/amd64/jli/libjli.so
+7f91805c4000-7f91807c4000 ---p 00015000 08:12 8141926                    /home/prw/.local/share/JetBrains/Toolbox/apps/IDEA-U/ch-0/191.6183.87/jre64/lib/amd64/jli/libjli.so
+7f91807c4000-7f91807c5000 rw-p 00015000 08:12 8141926                    /home/prw/.local/share/JetBrains/Toolbox/apps/IDEA-U/ch-0/191.6183.87/jre64/lib/amd64/jli/libjli.so
+7f91807c5000-7f91807df000 r-xp 00000000 08:12 3937126                    /lib/x86_64-linux-gnu/libpthread-2.27.so
+7f91807df000-7f91809de000 ---p 0001a000 08:12 3937126                    /lib/x86_64-linux-gnu/libpthread-2.27.so
+7f91809de000-7f91809df000 r--p 00019000 08:12 3937126                    /lib/x86_64-linux-gnu/libpthread-2.27.so
+7f91809df000-7f91809e0000 rw-p 0001a000 08:12 3937126                    /lib/x86_64-linux-gnu/libpthread-2.27.so
+7f91809e0000-7f91809e4000 rw-p 00000000 00:00 0 
+7f91809e4000-7f9180a0b000 r-xp 00000000 08:12 3936965                    /lib/x86_64-linux-gnu/ld-2.27.so
+7f9180ae0000-7f9180ae1000 ---p 00000000 00:00 0 
+7f9180ae1000-7f9180ae4000 ---p 00000000 00:00 0 
+7f9180ae4000-7f9180be3000 rw-p 00000000 00:00 0 
+7f9180bff000-7f9180c07000 rw-s 00000000 08:12 3938126                    /tmp/hsperfdata_prw/32559
+7f9180c07000-7f9180c08000 rw-p 00000000 00:00 0 
+7f9180c08000-7f9180c09000 r--p 00000000 00:00 0 
+7f9180c09000-7f9180c0b000 rw-p 00000000 00:00 0 
+7f9180c0b000-7f9180c0c000 r--p 00027000 08:12 3936965                    /lib/x86_64-linux-gnu/ld-2.27.so
+7f9180c0c000-7f9180c0d000 rw-p 00028000 08:12 3936965                    /lib/x86_64-linux-gnu/ld-2.27.so
+7f9180c0d000-7f9180c0e000 rw-p 00000000 00:00 0 
+7ffd22c8f000-7ffd22cb0000 rw-p 00000000 00:00 0                          [stack]
+7ffd22ce1000-7ffd22ce4000 r--p 00000000 00:00 0                          [vvar]
+7ffd22ce4000-7ffd22ce6000 r-xp 00000000 00:00 0                          [vdso]
+ffffffffff600000-ffffffffff601000 r-xp 00000000 00:00 0                  [vsyscall]
+
+VM Arguments:
+java_command: org.jetbrains.git4idea.http.GitAskPassApp Username for 'https://github.com': 
+java_class_path (initial): /home/prw/.local/share/JetBrains/Toolbox/apps/IDEA-U/ch-0/191.6183.87/plugins/git4idea/lib/git4idea-rt.jar:/home/prw/.local/share/JetBrains/Toolbox/apps/IDEA-U/ch-0/191.6183.87/lib/xmlrpc-2.0.1.jar:/home/prw/.local/share/JetBrains/Toolbox/apps/IDEA-U/ch-0/191.6183.87/lib/commons-codec-1.10.jar:/home/prw/.local/share/JetBrains/Toolbox/apps/IDEA-U/ch-0/191.6183.87/lib/util.jar
+Launcher Type: SUN_STANDARD
+
+Environment Variables:
+PATH=/usr/lib/git-core:/home/prw/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+SHELL=/bin/bash
+DISPLAY=:0
+
+Signal Handlers:
+SIGSEGV: [libjvm.so+0xa44f70], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGBUS: [libjvm.so+0xa44f70], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGFPE: [libjvm.so+0x8add30], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGPIPE: [libjvm.so+0x8add30], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGXFSZ: [libjvm.so+0x8add30], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGILL: [libjvm.so+0x8add30], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGUSR1: SIG_DFL, sa_mask[0]=00000000000000000000000000000000, sa_flags=none
+SIGUSR2: [libjvm.so+0x8af430], sa_mask[0]=00100000000000000000000000000000, sa_flags=SA_RESTART|SA_SIGINFO
+SIGHUP: SIG_DFL, sa_mask[0]=00000000000000000000000000000000, sa_flags=none
+SIGINT: SIG_DFL, sa_mask[0]=00000000000000000000000000000000, sa_flags=none
+SIGTERM: SIG_DFL, sa_mask[0]=00000000000000000000000000000000, sa_flags=none
+SIGQUIT: SIG_DFL, sa_mask[0]=00000000000000000000000000000000, sa_flags=none
+
+
+---------------  S Y S T E M  ---------------
+
+OS:DISTRIB_ID=Ubuntu
+DISTRIB_RELEASE=18.04
+DISTRIB_CODENAME=bionic
+DISTRIB_DESCRIPTION="Ubuntu 18.04.2 LTS"
+
+uname:Linux 4.18.0-20-generic #21~18.04.1-Ubuntu SMP Wed May 8 08:43:37 UTC 2019 x86_64
+libc:glibc 2.27 NPTL 2.27 
+rlimit: STACK 8192k, CORE 0k, NPROC 63383, NOFILE 1048576, AS infinity
+load average:73.71 35.60 14.66
+
+/proc/meminfo:
+MemTotal:       16345956 kB
+MemFree:          137716 kB
+MemAvailable:      23352 kB
+Buffers:            2412 kB
+Cached:          1874652 kB
+SwapCached:        22672 kB
+Active:         14153868 kB
+Inactive:        1444188 kB
+Active(anon):   14141124 kB
+Inactive(anon):  1429008 kB
+Active(file):      12744 kB
+Inactive(file):    15180 kB
+Unevictable:         680 kB
+Mlocked:             680 kB
+SwapTotal:       1048572 kB
+SwapFree:              0 kB
+Dirty:                88 kB
+Writeback:           148 kB
+AnonPages:      13703264 kB
+Mapped:          1012144 kB
+Shmem:           1847316 kB
+Slab:             220000 kB
+SReclaimable:      85560 kB
+SUnreclaim:       134440 kB
+KernelStack:       36432 kB
+PageTables:       187868 kB
+NFS_Unstable:          0 kB
+Bounce:                0 kB
+WritebackTmp:          0 kB
+CommitLimit:     9221548 kB
+Committed_AS:   47358072 kB
+VmallocTotal:   34359738367 kB
+VmallocUsed:           0 kB
+VmallocChunk:          0 kB
+HardwareCorrupted:     0 kB
+AnonHugePages:         0 kB
+ShmemHugePages:        0 kB
+ShmemPmdMapped:        0 kB
+CmaTotal:              0 kB
+CmaFree:               0 kB
+HugePages_Total:       0
+HugePages_Free:        0
+HugePages_Rsvd:        0
+HugePages_Surp:        0
+Hugepagesize:       2048 kB
+Hugetlb:               0 kB
+DirectMap4k:     1832704 kB
+DirectMap2M:    14866432 kB
+DirectMap1G:     1048576 kB
+
+container (cgroup) information:
+container_type: cgroupv1
+cpu_cpuset_cpus: 0-7
+cpu_memory_nodes: 0
+active_processor_count: 8
+cpu_quota: -1
+cpu_period: 100000
+cpu_shares: -1
+memory_limit_in_bytes: -1
+memory_and_swap_limit_in_bytes: -2
+memory_soft_limit_in_bytes: -1
+memory_usage_in_bytes: 15968890880
+memory_max_usage_in_bytes: 900419584
+
+
+CPU:total 8 (initial active 8) (4 cores per cpu, 2 threads per core) family 6 model 60 stepping 3, cmov, cx8, fxsr, mmx, sse, sse2, sse3, ssse3, sse4.1, sse4.2, popcnt, avx, avx2, aes, clmul, erms, lzcnt, ht, tsc, tscinvbit, bmi1, bmi2
+
+/proc/cpuinfo:
+processor	: 0
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 60
+model name	: Intel(R) Core(TM) i7-4720HQ CPU @ 2.60GHz
+stepping	: 3
+microcode	: 0x27
+cpu MHz		: 2593.959
+cache size	: 6144 KB
+physical id	: 0
+siblings	: 8
+core id		: 0
+cpu cores	: 4
+apicid		: 0
+initial apicid	: 0
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 13
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc cpuid aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx est tm2 ssse3 sdbg fma cx16 xtpr pdcm pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm abm cpuid_fault epb invpcid_single pti ssbd ibrs ibpb stibp tpr_shadow vnmi flexpriority ept vpid fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid xsaveopt dtherm ida arat pln pts md_clear flush_l1d
+bugs		: cpu_meltdown spectre_v1 spectre_v2 spec_store_bypass l1tf mds
+bogomips	: 5187.91
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 39 bits physical, 48 bits virtual
+power management:
+
+processor	: 1
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 60
+model name	: Intel(R) Core(TM) i7-4720HQ CPU @ 2.60GHz
+stepping	: 3
+microcode	: 0x27
+cpu MHz		: 2593.954
+cache size	: 6144 KB
+physical id	: 0
+siblings	: 8
+core id		: 0
+cpu cores	: 4
+apicid		: 1
+initial apicid	: 1
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 13
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc cpuid aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx est tm2 ssse3 sdbg fma cx16 xtpr pdcm pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm abm cpuid_fault epb invpcid_single pti ssbd ibrs ibpb stibp tpr_shadow vnmi flexpriority ept vpid fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid xsaveopt dtherm ida arat pln pts md_clear flush_l1d
+bugs		: cpu_meltdown spectre_v1 spectre_v2 spec_store_bypass l1tf mds
+bogomips	: 5187.91
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 39 bits physical, 48 bits virtual
+power management:
+
+processor	: 2
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 60
+model name	: Intel(R) Core(TM) i7-4720HQ CPU @ 2.60GHz
+stepping	: 3
+microcode	: 0x27
+cpu MHz		: 2593.960
+cache size	: 6144 KB
+physical id	: 0
+siblings	: 8
+core id		: 1
+cpu cores	: 4
+apicid		: 2
+initial apicid	: 2
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 13
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc cpuid aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx est tm2 ssse3 sdbg fma cx16 xtpr pdcm pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm abm cpuid_fault epb invpcid_single pti ssbd ibrs ibpb stibp tpr_shadow vnmi flexpriority ept vpid fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid xsaveopt dtherm ida arat pln pts md_clear flush_l1d
+bugs		: cpu_meltdown spectre_v1 spectre_v2 spec_store_bypass l1tf mds
+bogomips	: 5187.91
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 39 bits physical, 48 bits virtual
+power management:
+
+processor	: 3
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 60
+model name	: Intel(R) Core(TM) i7-4720HQ CPU @ 2.60GHz
+stepping	: 3
+microcode	: 0x27
+cpu MHz		: 2593.959
+cache size	: 6144 KB
+physical id	: 0
+siblings	: 8
+core id		: 1
+cpu cores	: 4
+apicid		: 3
+initial apicid	: 3
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 13
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc cpuid aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx est tm2 ssse3 sdbg fma cx16 xtpr pdcm pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm abm cpuid_fault epb invpcid_single pti ssbd ibrs ibpb stibp tpr_shadow vnmi flexpriority ept vpid fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid xsaveopt dtherm ida arat pln pts md_clear flush_l1d
+bugs		: cpu_meltdown spectre_v1 spectre_v2 spec_store_bypass l1tf mds
+bogomips	: 5187.91
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 39 bits physical, 48 bits virtual
+power management:
+
+processor	: 4
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 60
+model name	: Intel(R) Core(TM) i7-4720HQ CPU @ 2.60GHz
+stepping	: 3
+microcode	: 0x27
+cpu MHz		: 2593.958
+cache size	: 6144 KB
+physical id	: 0
+siblings	: 8
+core id		: 2
+cpu cores	: 4
+apicid		: 4
+initial apicid	: 4
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 13
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc cpuid aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx est tm2 ssse3 sdbg fma cx16 xtpr pdcm pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm abm cpuid_fault epb invpcid_single pti ssbd ibrs ibpb stibp tpr_shadow vnmi flexpriority ept vpid fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid xsaveopt dtherm ida arat pln pts md_clear flush_l1d
+bugs		: cpu_meltdown spectre_v1 spectre_v2 spec_store_bypass l1tf mds
+bogomips	: 5187.91
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 39 bits physical, 48 bits virtual
+power management:
+
+processor	: 5
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 60
+model name	: Intel(R) Core(TM) i7-4720HQ CPU @ 2.60GHz
+stepping	: 3
+microcode	: 0x27
+cpu MHz		: 2593.959
+cache size	: 6144 KB
+physical id	: 0
+siblings	: 8
+core id		: 2
+cpu cores	: 4
+apicid		: 5
+initial apicid	: 5
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 13
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc cpuid aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx est tm2 ssse3 sdbg fma cx16 xtpr pdcm pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm abm cpuid_fault epb invpcid_single pti ssbd ibrs ibpb stibp tpr_shadow vnmi flexpriority ept vpid fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid xsaveopt dtherm ida arat pln pts md_clear flush_l1d
+bugs		: cpu_meltdown spectre_v1 spectre_v2 spec_store_bypass l1tf mds
+bogomips	: 5187.91
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 39 bits physical, 48 bits virtual
+power management:
+
+processor	: 6
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 60
+model name	: Intel(R) Core(TM) i7-4720HQ CPU @ 2.60GHz
+stepping	: 3
+microcode	: 0x27
+cpu MHz		: 2593.959
+cache size	: 6144 KB
+physical id	: 0
+siblings	: 8
+core id		: 3
+cpu cores	: 4
+apicid		: 6
+initial apicid	: 6
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 13
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc cpuid aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx est tm2 ssse3 sdbg fma cx16 xtpr pdcm pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm abm cpuid_fault epb invpcid_single pti ssbd ibrs ibpb stibp tpr_shadow vnmi flexpriority ept vpid fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid xsaveopt dtherm ida arat pln pts md_clear flush_l1d
+bugs		: cpu_meltdown spectre_v1 spectre_v2 spec_store_bypass l1tf mds
+bogomips	: 5187.91
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 39 bits physical, 48 bits virtual
+power management:
+
+processor	: 7
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 60
+model name	: Intel(R) Core(TM) i7-4720HQ CPU @ 2.60GHz
+stepping	: 3
+microcode	: 0x27
+cpu MHz		: 2593.957
+cache size	: 6144 KB
+physical id	: 0
+siblings	: 8
+core id		: 3
+cpu cores	: 4
+apicid		: 7
+initial apicid	: 7
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 13
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc cpuid aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx est tm2 ssse3 sdbg fma cx16 xtpr pdcm pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm abm cpuid_fault epb invpcid_single pti ssbd ibrs ibpb stibp tpr_shadow vnmi flexpriority ept vpid fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid xsaveopt dtherm ida arat pln pts md_clear flush_l1d
+bugs		: cpu_meltdown spectre_v1 spectre_v2 spec_store_bypass l1tf mds
+bogomips	: 5187.91
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 39 bits physical, 48 bits virtual
+power management:
+
+
+
+Memory: 4k page, physical 16345956k(138388k free), swap 1048572k(0k free)
+
+vm_info: OpenJDK 64-Bit Server VM (25.202-b39) for linux-amd64 JRE (1.8.0_202-release-1483-b39), built on Mar  7 2019 20:05:01 by "root" with gcc 4.4.7 20120313 (Red Hat 4.4.7-16)
+
+time: Wed Jun  5 23:26:45 2019
+timezone: CEST
+elapsed time: 1 seconds (0d 0h 0m 1s)
+
